@@ -20,6 +20,14 @@
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Alumno"
+            android:label="Alumno"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Materia"
+            android:label="Materia"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

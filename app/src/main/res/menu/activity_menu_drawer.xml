@@ -12,6 +12,14 @@
             android:id="@+id/Inscripcion"
             android:icon="@drawable/ic_launcher_background"
             android:title="Inscripcion" />
+        <item
+            android:id="@+id/Alumno"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Alumno" />
+        <item
+            android:id="@+id/Materia"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Materia" />
     </group>
 
 
