@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 // Esta es como si fuera su clase, por ejemplo esta en vez de ser MainActivity deberia ser Alumno
-public class MainActivity extends AppCompatActivity {
+public class Horario extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
     EditText editName,editTextId;            // campos de texto
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Integer deletedRows = myDb.deleteDataAlumno(editTextId.getText().toString());
                         if(deletedRows > 0)
-                            Toast.makeText(MainActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Horario.this,"Data Deleted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(MainActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Horario.this,"Data not Deleted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
                         boolean isUpdate = myDb.updateDataAlumno(editTextId.getText().toString(),
                                 editName.getText().toString());
                         if(isUpdate == true)
-                            Toast.makeText(MainActivity.this,"Data Update",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Horario.this,"Data Update",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(MainActivity.this,"Data not Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Horario.this,"Data not Updated",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean isInserted = myDb.insertDataAlumno(editName.getText().toString());
                         if(isInserted == true)
-                            Toast.makeText(MainActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Horario.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(MainActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Horario.this,"Data not Inserted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
