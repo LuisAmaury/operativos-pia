@@ -22,7 +22,7 @@ public class Horario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.horario);
         myDb = new MyDBHandler(this);
 
         editName = (EditText)findViewById(R.id.editText_name);
