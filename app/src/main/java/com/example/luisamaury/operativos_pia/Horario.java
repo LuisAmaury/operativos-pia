@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class Horario extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId;            // campos de texto
+    EditText idHorario, editDias,editHoraInicio, editHoraFin;// campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
     Button btnDelete;
@@ -25,8 +25,11 @@ public class Horario extends AppCompatActivity {
         setContentView(R.layout.horario);
         myDb = new MyDBHandler(this);
 
-        editName = (EditText)findViewById(R.id.editText_name);
-        editTextId = (EditText)findViewById(R.id.editText_id);
+        editDias = (EditText)findViewById(R.id.editText_diasHorario);
+        editHoraInicio = (EditText)findViewById(R.id.editText_horaInicioHorario);
+        editHoraFin = (EditText)findViewById(R.id.editText_horaFinHorario);
+        idHorario = (EditText)findViewById(R.id.editText_id);
+
         btnAddData = (Button)findViewById(R.id.button_add);
         btnviewAll = (Button)findViewById(R.id.button_viewAll);
         btnviewUpdate= (Button)findViewById(R.id.button_update);
@@ -42,7 +45,7 @@ public class Horario extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Integer deletedRows = myDb.deleteDataAlumno(editTextId.getText().toString());
+                        Integer deletedRows = myDb.deleteDataHorario(idHorario.getText().toString());
                         if(deletedRows > 0)
                             Toast.makeText(Horario.this,"Data Deleted",Toast.LENGTH_LONG).show();
                         else
@@ -56,8 +59,8 @@ public class Horario extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isUpdate = myDb.updateDataAlumno(editTextId.getText().toString(),
-                                editName.getText().toString());
+                        boolean isUpdate = myDb.updateDataHorario(idHorario.getText().toString(),
+                                editDias.getText().toString(), editHoraInicio.getText().toString(), editHoraFin.getText().toString());
                         if(isUpdate == true)
                             Toast.makeText(Horario.this,"Data Update",Toast.LENGTH_LONG).show();
                         else
@@ -71,7 +74,7 @@ public class Horario extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString());
+                        boolean isInserted = myDb.insertHorario(editDias.getText().toString(), editHoraInicio.getText().toString(), editHoraFin.getText().toString());
                         if(isInserted == true)
                             Toast.makeText(Horario.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
@@ -86,7 +89,7 @@ public class Horario extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Cursor res = myDb.getAllDataAlumno();
+                        Cursor res = myDb.getAllDataHorario();
                         if(res.getCount() == 0) {
                             // show message
                             showMessage("Error","Nothing found");
@@ -96,7 +99,9 @@ public class Horario extends AppCompatActivity {
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
                             buffer.append("Id :"+ res.getString(0)+"\n");
-                            buffer.append("Name :"+ res.getString(1)+"\n");
+                            buffer.append("Dias :"+ res.getString(1)+"\n");
+                            buffer.append("Hora Inicio :"+ res.getString(2)+"\n");
+                            buffer.append("Hora Fin :"+ res.getString(3)+"\n");
                         }
 
                         // Show all data

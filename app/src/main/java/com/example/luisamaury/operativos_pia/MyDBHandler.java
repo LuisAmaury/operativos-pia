@@ -139,7 +139,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     //INSCRIPCION
-    public boolean insertInscripcion(int idAlumno, int idGrupo, int calificacion){
+    public boolean insertInscripcion(String idAlumno, String idGrupo, String calificacion){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(inscripcionAlumno_col_2, idAlumno);
@@ -158,7 +158,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateDataInscripcion(String idInscripcionAlumno, int idAlumno, int idGrupo, int calificacion){
+    public boolean updateDataInscripcion(String idInscripcionAlumno, String idAlumno, String idGrupo, String calificacion){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(inscripcionAlumno_col_2, idAlumno);

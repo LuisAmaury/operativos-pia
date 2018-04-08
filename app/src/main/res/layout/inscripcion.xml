@@ -26,12 +26,32 @@
             tools:layout_editor_absoluteY="99dp"
             tools:ignore="MissingConstraints" />
         <EditText
-            android:id="@+id/editText_name"
+            android:id="@+id/editText_idAlumno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Student Name"
+            android:text="Id Alumno"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_idGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="id Grupo"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_calificacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Calificacion"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="140dp"
             tools:ignore="MissingConstraints" />

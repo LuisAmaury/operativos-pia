@@ -20,18 +20,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Student ID"
+            android:inputType="text"
+            android:text="Id"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="99dp"
             tools:ignore="MissingConstraints" />
         <EditText
-            android:id="@+id/editText_name"
+            android:id="@+id/editText_diasHorario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Student Name"
+            android:inputType="text"
+            android:text="Dias"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="99dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_horaInicioHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Hora Inicio"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_horaFinHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Hora Fin"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="140dp"
             tools:ignore="MissingConstraints" />

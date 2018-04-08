@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class Inscripcion extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId;            // campos de texto
+    EditText id, idAlumno, idGrupo, calificacion;// campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
     Button btnDelete;
@@ -25,12 +25,16 @@ public class Inscripcion extends AppCompatActivity {
         setContentView(R.layout.inscripcion);
         myDb = new MyDBHandler(this);
 
-        editName = (EditText)findViewById(R.id.editText_name);
-        editTextId = (EditText)findViewById(R.id.editText_id);
+        id = (EditText)findViewById(R.id.editText_id);
+        idAlumno = (EditText)findViewById(R.id.editText_idAlumno);
+        idGrupo = (EditText)findViewById(R.id.editText_idGrupo);
+        calificacion = (EditText)findViewById(R.id.editText_calificacion);
+
         btnAddData = (Button)findViewById(R.id.button_add);
         btnviewAll = (Button)findViewById(R.id.button_viewAll);
         btnviewUpdate= (Button)findViewById(R.id.button_update);
         btnDelete= (Button)findViewById(R.id.button_delete);
+
         AddData();
         viewAll();
         UpdateData();
@@ -42,7 +46,7 @@ public class Inscripcion extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Integer deletedRows = myDb.deleteDataAlumno(editTextId.getText().toString());
+                        Integer deletedRows = myDb.deleteDataInscripcion(id.getText().toString());
                         if(deletedRows > 0)
                             Toast.makeText(Inscripcion.this,"Data Deleted",Toast.LENGTH_LONG).show();
                         else
@@ -56,8 +60,8 @@ public class Inscripcion extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isUpdate = myDb.updateDataAlumno(editTextId.getText().toString(),
-                                editName.getText().toString());
+                        boolean isUpdate = myDb.updateDataInscripcion(id.getText().toString(),
+                                idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
                         if(isUpdate == true)
                             Toast.makeText(Inscripcion.this,"Data Update",Toast.LENGTH_LONG).show();
                         else
@@ -71,7 +75,7 @@ public class Inscripcion extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString());
+                        boolean isInserted = myDb.insertInscripcion(idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
                         if(isInserted == true)
                             Toast.makeText(Inscripcion.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
@@ -86,7 +90,7 @@ public class Inscripcion extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Cursor res = myDb.getAllDataAlumno();
+                        Cursor res = myDb.getAllDataInscripcion();
                         if(res.getCount() == 0) {
                             // show message
                             showMessage("Error","Nothing found");
@@ -96,7 +100,9 @@ public class Inscripcion extends AppCompatActivity {
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
                             buffer.append("Id :"+ res.getString(0)+"\n");
-                            buffer.append("Name :"+ res.getString(1)+"\n");
+                            buffer.append("idAlumno :"+ res.getString(1)+"\n");
+                            buffer.append("idGrupo :"+ res.getString(2)+"\n");
+                            buffer.append("Calificacion :"+ res.getString(3)+"\n");
                         }
 
                         // Show all data
