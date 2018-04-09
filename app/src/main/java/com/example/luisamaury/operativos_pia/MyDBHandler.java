@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDBHandler extends SQLiteOpenHelper {
     //information of database
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "SO.db";
 
     public static final String alumno_TABLE_NAME = "Alumno";
@@ -106,15 +106,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(alumno_TABLE_NAME, "idAlumno = ?",new String[] {id});
     }
-
     // MATERIA
 
     public boolean insertDataMateria(String name, int requisito) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(materia_col_2,name);
+        contentValues.put(materia_col_2, name);
         contentValues.put(materia_col_3, requisito);
-        long result = db.insert(materia_TABLE_NAME,null ,contentValues);
+        long result = db.insert(materia_TABLE_NAME, null, contentValues);
         if(result == -1)
             return false;
         else
@@ -141,5 +140,73 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(materia_TABLE_NAME, "idMateria = ?",new String[] {id});
     }
-}
+    //HORARIO
+    public boolean insertHorario(String dias, String horaInicio, String horaFin){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(horario_col_2, dias);
+        contentValues.put(horario_col_3, horaInicio);
+        contentValues.put(horario_col_4, horaFin);
+        long result = db.insert(horario_TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
 
+    public Cursor getAllDataHorario(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + horario_TABLE_NAME, null);
+        return res;
+    }
+
+    public boolean updateDataHorario(String id, String dias, String horaInicio, String horaFin){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(horario_col_2, dias);
+        contentValues.put(horario_col_3, horaInicio);
+        contentValues.put(horario_col_4, horaFin);
+        db.update(horario_TABLE_NAME, contentValues, "idHorario = ?",  new String[] {id});
+        return true;
+    }
+
+    public Integer deleteDataHorario(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(horario_TABLE_NAME, "idHorario = ?", new String[] {id});
+    }
+
+    //INSCRIPCION
+    public boolean insertInscripcion(String idAlumno, String idGrupo, String calificacion){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(inscripcionAlumno_col_2, idAlumno);
+        contentValues.put(inscripcionAlumno_col_3, idGrupo);
+        contentValues.put(inscripcionAlumno_col_4, calificacion);
+        long result = db.insert(inscripcionAlumno_TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public Cursor getAllDataInscripcion(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME, null);
+        return res;
+    }
+
+    public boolean updateDataInscripcion(String idInscripcionAlumno, String idAlumno, String idGrupo, String calificacion){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(inscripcionAlumno_col_2, idAlumno);
+        contentValues.put(inscripcionAlumno_col_3, idGrupo);
+        contentValues.put(inscripcionAlumno_col_4, calificacion);
+        db.update(inscripcionAlumno_TABLE_NAME, contentValues, "idInscripcionAlumno = ?",  new String[] {idInscripcionAlumno});
+        return true;
+    }
+
+    public Integer deleteDataInscripcion(String idInscripcionAlumno){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(inscripcionAlumno_TABLE_NAME, "idInscripcionAlumno = ?", new String[] {idInscripcionAlumno});
+    }
+}

@@ -82,9 +82,9 @@ public class MenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.Horario) {
-            // Handle the camera action
+            startActivity(new Intent(MenuActivity.this,Horario.class));
         } else if (id == R.id.Inscripcion) {
-
+          startActivity(new Intent(MenuActivity.this,Inscripcion.class));
         } else if(id == R.id.Alumno) {
             startActivity(new Intent(MenuActivity.this,Alumno.class));
         } else if(id == R.id.Materia) {
