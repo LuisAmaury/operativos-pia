@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Agregar">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:src="@+id/imageView"
+        android:scaleType="fitCenter"
+        android:layout_height="250px"
+        android:layout_width="250px"/>
+
+    <TextView
+        android:text="Frame Demo"
+        android:textSize="30px"
+        android:textStyle="bold"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:gravity="center"/>
+
+</FrameLayout>

@@ -9,9 +9,14 @@
             android:icon="@drawable/ic_launcher_background"
             android:title="Horario" />
         <item
-            android:id="@+id/Inscripcion"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="Inscripcion" />
+        android:id="@+id/Inscripcion"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Inscripcion" />
+        <item
+            android:id="@+id/Group"
+            android:icon="@drawable/ic_content_paste_black_24dp"
+            android:title="Group" />
+
     </group>
 
 

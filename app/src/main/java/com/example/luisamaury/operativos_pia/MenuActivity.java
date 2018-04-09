@@ -1,5 +1,8 @@
 package com.example.luisamaury.operativos_pia;
 
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,14 +83,24 @@ public class MenuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentManager fragmentManager =  getSupportFragmentManager();
         if (id == R.id.Horario) {
             // Handle the camera action
+
         } else if (id == R.id.Inscripcion) {
 
         }
+        else if (id == R.id.Group) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contenedor, new GroupFragment())
+                    .commit();
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
