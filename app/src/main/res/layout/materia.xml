@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.luisamaury.operativos_pia.Horario"
+    tools:context="com.example.luisamaury.operativos_pia.Materia"
     tools:layout_editor_absoluteY="73dp">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,66 +17,57 @@
         tools:ignore="MissingConstraints">
 
         <EditText
-            android:id="@+id/editText_id"
+            android:id="@+id/editText_idMateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Id"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="99dp" />
-        <EditText
-            android:id="@+id/editText_diasHorario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Dias"
+            android:inputType="textPersonName"
+            android:text="Materia ID"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="99dp"
             tools:ignore="MissingConstraints" />
         <EditText
-            android:id="@+id/editText_horaInicioHorario"
+            android:id="@+id/editText_nameMateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Hora Inicio"
+            android:inputType="textPersonName"
+            android:text="Materia Nombre"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="140dp"
             tools:ignore="MissingConstraints" />
+
         <EditText
-            android:id="@+id/editText_horaFinHorario"
+            android:id="@+id/editText_requisitoMateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Hora Fin"
+            android:inputType="number"
+            android:text="Requisito"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="140dp"
             tools:ignore="MissingConstraints" />
 
 
         <Button
-        android:id="@+id/button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AddData"
-        android:onClick="AddData"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="332dp"
-        tools:ignore="MissingConstraints,OnClick" />
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AddData"
+            android:onClick="AddData"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
 
         <Button
-        android:id="@+id/button_viewAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="viewAll"
-        android:onClick="viewAll"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="332dp"
-        tools:ignore="MissingConstraints,OnClick" />
+            android:id="@+id/button_viewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="viewAll"
+            android:onClick="viewAll"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
 
         <Button
             android:id="@+id/button_update"
@@ -98,4 +90,6 @@
             tools:ignore="MissingConstraints,OnClick" />
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
+

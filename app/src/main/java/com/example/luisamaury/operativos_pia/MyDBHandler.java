@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDBHandler extends SQLiteOpenHelper {
     //information of database
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "SO.db";
 
     public static final String alumno_TABLE_NAME = "Alumno";
@@ -72,10 +72,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     // ALUMNO
-    public boolean insertDataAlumno(String name) {
+    public boolean insertDataAlumno(String name, String telefono, int idUsuario) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(alumno_col_2,name);
+        contentValues.put(alumno_col_3, telefono);
+        contentValues.put(alumno_col_4, idUsuario);
         long result = db.insert(alumno_TABLE_NAME,null ,contentValues);
         if(result == -1)
             return false;
@@ -89,11 +91,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateDataAlumno(String id,String name) {
+    public boolean updateDataAlumno(String id,String name, String telefono, int idUsuario) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(alumno_col_1,id);
         contentValues.put(alumno_col_2,name);
+        contentValues.put(alumno_col_3, telefono);
+        contentValues.put(alumno_col_4, idUsuario);
         db.update(alumno_TABLE_NAME, contentValues, "idAlumno = ?",new String[] { id });
         return true;
     }
@@ -102,7 +106,40 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(alumno_TABLE_NAME, "idAlumno = ?",new String[] {id});
     }
+    // MATERIA
 
+    public boolean insertDataMateria(String name, int requisito) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(materia_col_2, name);
+        contentValues.put(materia_col_3, requisito);
+        long result = db.insert(materia_TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public Cursor getAllDataMateria() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+materia_TABLE_NAME,null);
+        return res;
+    }
+
+    public boolean updateDataMateria(String id,String name, int requisito) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(materia_col_1,id);
+        contentValues.put(materia_col_2,name);
+        contentValues.put(materia_col_3, requisito);
+        db.update(materia_TABLE_NAME, contentValues, "idMateria = ?",new String[] { id });
+        return true;
+    }
+
+    public Integer deleteDataMateria(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(materia_TABLE_NAME, "idMateria = ?",new String[] {id});
+    }
     //HORARIO
     public boolean insertHorario(String dias, String horaInicio, String horaFin){
         SQLiteDatabase db = this.getWritableDatabase();

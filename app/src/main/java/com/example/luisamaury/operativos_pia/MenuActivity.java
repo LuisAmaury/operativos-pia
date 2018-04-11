@@ -84,7 +84,11 @@ public class MenuActivity extends AppCompatActivity
         if (id == R.id.Horario) {
             startActivity(new Intent(MenuActivity.this,Horario.class));
         } else if (id == R.id.Inscripcion) {
-            startActivity(new Intent(MenuActivity.this,Inscripcion.class));
+          startActivity(new Intent(MenuActivity.this,Inscripcion.class));
+        } else if(id == R.id.Alumno) {
+            startActivity(new Intent(MenuActivity.this,Alumno.class));
+        } else if(id == R.id.Materia) {
+            startActivity(new Intent(MenuActivity.this,Materia.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
