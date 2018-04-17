@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.luisamaury.operativos_pia.Horario"
+    tools:layout_editor_absoluteY="73dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/editText_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Id"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="99dp" />
+        <EditText
+            android:id="@+id/editText_diasHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Dias"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="99dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_horaInicioHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Hora Inicio"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_horaFinHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Hora Fin"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AddData"
+        android:onClick="AddData"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="332dp"
+        tools:ignore="MissingConstraints,OnClick" />
+
+        <Button
+        android:id="@+id/button_viewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="viewAll"
+        android:onClick="viewAll"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="332dp"
+        tools:ignore="MissingConstraints,OnClick" />
+
+        <Button
+            android:id="@+id/button_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UpdateData"
+            android:onClick="UpdateData"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DeleteData"
+            android:onClick="DeleteData"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
