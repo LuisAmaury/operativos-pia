@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -80,6 +81,7 @@ public class MenuActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentManager fragmentManager =  getSupportFragmentManager();
 
         if (id == R.id.Horario) {
             startActivity(new Intent(MenuActivity.this,Horario.class));
@@ -89,6 +91,14 @@ public class MenuActivity extends AppCompatActivity
             startActivity(new Intent(MenuActivity.this,Alumno.class));
         } else if(id == R.id.Materia) {
             startActivity(new Intent(MenuActivity.this,Materia.class));
+        } else  if(id == R.id.Group) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contenedor, new GroupFragment())
+                    .commit();
+        }else if (id == R.id.Usuario) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contenedor, new UserFragment())
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

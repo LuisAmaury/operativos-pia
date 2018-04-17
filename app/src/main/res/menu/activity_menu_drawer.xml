@@ -20,6 +20,14 @@
             android:id="@+id/Materia"
             android:icon="@drawable/ic_launcher_background"
             android:title="Materia" />
+        <item
+            android:id="@+id/Group"
+            android:icon="@drawable/ic_people_outline_black_24dp"
+            android:title="Group" />
+        <item
+            android:id="@+id/Usuario"
+            android:icon="@drawable/ic_user_black_24dp"
+            android:title="Usuario" />
     </group>
 
 
