@@ -1,44 +1,63 @@
 package com.example.luisamaury.operativos_pia;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-// Esta es como si fuera su clase, por ejemplo esta en vez de ser MainActivity deberia ser Alumno
-public class Inscripcion extends AppCompatActivity {
+
+public class I_INSCRIPCION extends Fragment {
 
     MyDBHandler myDb;                           // Base de datos
     EditText id, idAlumno, idGrupo, calificacion;// campos de texto
-    Button btnAddData;                         // Botones
-    Button btnviewAll;
-    Button btnDelete;
+    Button btnAddData, btnviewAll, btnDelete, btnviewUpdate;                        // Botones
 
-    Button btnviewUpdate;
+
+    public I_INSCRIPCION() {
+        // Required empty public constructor
+    }
+
+
+    public static I_INSCRIPCION newInstance(String param1, String param2) {
+        I_INSCRIPCION fragment = new I_INSCRIPCION();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inscripcion);
-        myDb = new MyDBHandler(this);
+    }
 
-        id = (EditText)findViewById(R.id.editText_id);
-        idAlumno = (EditText)findViewById(R.id.editText_idAlumno);
-        idGrupo = (EditText)findViewById(R.id.editText_idGrupo);
-        calificacion = (EditText)findViewById(R.id.editText_calificacion);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_i__inscripcion, container, false);
+        myDb = new MyDBHandler(getContext());
 
-        btnAddData = (Button)findViewById(R.id.button_add);
-        btnviewAll = (Button)findViewById(R.id.button_viewAll);
-        btnviewUpdate= (Button)findViewById(R.id.button_update);
-        btnDelete= (Button)findViewById(R.id.button_delete);
+        id = view.findViewById(R.id.editText_id);
+        idAlumno = view.findViewById(R.id.editText_idAlumno);
+        idGrupo = view.findViewById(R.id.editText_idGrupo);
+        calificacion = view.findViewById(R.id.editText_calificacion);
+
+        btnAddData = view.findViewById(R.id.button_add);
+        btnviewAll = view.findViewById(R.id.button_viewAll);
+        btnviewUpdate= view.findViewById(R.id.button_update);
+        btnDelete= view.findViewById(R.id.button_delete);
 
         AddData();
         viewAll();
         UpdateData();
         DeleteData();
+        return view;
     }
 
     public void DeleteData() {
@@ -48,9 +67,9 @@ public class Inscripcion extends AppCompatActivity {
                     public void onClick(View v) {
                         Integer deletedRows = myDb.deleteDataInscripcion(id.getText().toString());
                         if(deletedRows > 0)
-                            Toast.makeText(Inscripcion.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Deleted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Inscripcion.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Deleted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -63,9 +82,9 @@ public class Inscripcion extends AppCompatActivity {
                         boolean isUpdate = myDb.updateDataInscripcion(id.getText().toString(),
                                 idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
                         if(isUpdate == true)
-                            Toast.makeText(Inscripcion.this,"Data Update",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Update",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Inscripcion.this,"Data not Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Updated",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -77,9 +96,9 @@ public class Inscripcion extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean isInserted = myDb.insertInscripcion(idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
                         if(isInserted == true)
-                            Toast.makeText(Inscripcion.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Inserted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Inscripcion.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Inserted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -113,11 +132,10 @@ public class Inscripcion extends AppCompatActivity {
     }
 
     public void showMessage(String title,String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(Message);
         builder.show();
     }
 }
-

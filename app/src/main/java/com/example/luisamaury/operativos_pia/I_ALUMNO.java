@@ -1,46 +1,62 @@
 package com.example.luisamaury.operativos_pia;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Alumno extends AppCompatActivity {
 
+
+public class I_ALUMNO extends Fragment {
     MyDBHandler myDb;                           // Base de datos
     EditText editName,editTextId, editPhone, editIdUsuario;            // campos de texto
-    Button btnAddData;                         // Botones
-    Button btnviewAll;
-    Button btnDelete;
+    Button btnAddData, btnviewAll, btnDelete, btnviewUpdate;// Botones
 
-    Button btnviewUpdate;
+    public I_ALUMNO() {
+        // Required empty public constructor
+    }
+
+    public static I_ALUMNO newInstance(String param1, String param2) {
+        I_ALUMNO fragment = new I_ALUMNO();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alumno);
-        myDb = new MyDBHandler(this);
 
-        editName = (EditText)findViewById(R.id.editText_nameAlumno);
-        editTextId = (EditText)findViewById(R.id.editText_idAlumno);
-        editPhone = (EditText)findViewById(R.id.editText_telefonoAlumno);
-        editIdUsuario = (EditText)findViewById(R.id.editText_idUsuarioAlumno);
+    }
 
-        btnAddData = (Button)findViewById(R.id.button_add);
-        btnviewAll = (Button)findViewById(R.id.button_viewAll);
-        btnviewUpdate= (Button)findViewById(R.id.button_update);
-        btnDelete= (Button)findViewById(R.id.button_delete);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_i__alumno, container, false);
+        myDb = new MyDBHandler(getContext());
+        editName =  view.findViewById(R.id.editText_nameAlumno);
+        editTextId = view.findViewById(R.id.editText_idAlumno);
+        editPhone = view.findViewById(R.id.editText_telefonoAlumno);
+        editIdUsuario = view.findViewById(R.id.editText_idUsuarioAlumno);
+
+        btnAddData = view.findViewById(R.id.button_add);
+        btnviewAll = view.findViewById(R.id.button_viewAll);
+        btnviewUpdate= view.findViewById(R.id.button_update);
+        btnDelete= view.findViewById(R.id.button_delete);
 
         AddData();
         viewAll();
         UpdateData();
         DeleteData();
+        return view;
     }
 
     public void DeleteData() {
@@ -50,9 +66,9 @@ public class Alumno extends AppCompatActivity {
                     public void onClick(View v) {
                         Integer deletedRows = myDb.deleteDataAlumno(editTextId.getText().toString());
                         if(deletedRows > 0)
-                            Toast.makeText(Alumno.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Deleted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Alumno.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Deleted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -65,9 +81,9 @@ public class Alumno extends AppCompatActivity {
                         boolean isUpdate = myDb.updateDataAlumno(editTextId.getText().toString(),
                                 editName.getText().toString(), editPhone.getText().toString(), Integer.parseInt(editIdUsuario.getText().toString()));
                         if(isUpdate == true)
-                            Toast.makeText(Alumno.this,"Data Update",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Update",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Alumno.this,"Data not Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Updated",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -79,9 +95,9 @@ public class Alumno extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), Integer.parseInt(editIdUsuario.getText().toString()));
                         if(isInserted == true)
-                            Toast.makeText(Alumno.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Inserted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Alumno.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Inserted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -115,7 +131,7 @@ public class Alumno extends AppCompatActivity {
     }
 
     public void showMessage(String title,String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(Message);
