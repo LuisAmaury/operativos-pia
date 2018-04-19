@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".I_MATERIA">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/editText_idMateria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Materia ID"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="99dp"
+            tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editText_nameMateria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Materia Nombre"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editText_requisitoMateria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:text="Requisito"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AddData"
+            android:onClick="AddData"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
+
+        <Button
+            android:id="@+id/button_viewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="viewAll"
+            android:onClick="viewAll"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
+
+        <Button
+            android:id="@+id/button_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UpdateData"
+            android:onClick="UpdateData"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DeleteData"
+            android:onClick="DeleteData"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="332dp"
+            tools:ignore="MissingConstraints,OnClick" />
+
+    </LinearLayout>
+</FrameLayout>
