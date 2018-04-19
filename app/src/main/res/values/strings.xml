@@ -5,4 +5,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_group">AddGroupActivity</string>
+    <string name="title_activity_delete_group">DeleteGroupActivity</string>
+    <string name="title_activity_view_groups">ViewGroupsActivity</string>
+    <string name="title_activity_modify_group">ModifyGroupActivity</string>
+    <string name="title_activity_add_user">AddUserActivity</string>
+    <string name="title_activity_delete_user">DeleteUserActivity</string>
+    <string name="title_activity_modify_user">ModifyUserActivity</string>
+    <string name="title_activity_view_users">ViewUsersActivity</string>
+    <string name="title_activity_add_student">AddStudentActivity</string>
+    <string name="title_activity_delete_student">DeleteStudentActivity</string>
+    <string name="title_activity_modify_student">ModifyStudentActivity</string>
+    <string name="title_activity_view_student">ViewStudentActivity</string>
 </resources>

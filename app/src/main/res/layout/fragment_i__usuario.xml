@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#a65dcb"
-    tools:context=".I_ALUMNO">
+    android:background="#82acc6"
+    tools:context=".I_USUARIO">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,12 +22,12 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="11dp"
-            android:text="Student Layout jeje"
+            android:text="User Layout jeje"
             android:textColor="@android:color/background_light"
             android:textSize="40sp" />
 
         <Button
-            android:id="@+id/btnAddStudent"
+            android:id="@+id/btnAddUser"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -38,13 +39,13 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Add Student Activity"
+            android:text="To Add User Activity"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnModifyStudent"
+            android:id="@+id/btnModifyUser"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -56,13 +57,13 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Modify Student Activity"
+            android:text="To Modify User Activity"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnViewStudent"
+            android:id="@+id/btnViewUsers"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -74,13 +75,13 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To View All Student Activity"
+            android:text="To View All Users Activity"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnDeleteStudent"
+            android:id="@+id/btnDeleteUser"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -92,11 +93,9 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Delete Student Activity"
+            android:text="To Delete User Activity"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
     </LinearLayout>
-
-
 </FrameLayout>
