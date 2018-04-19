@@ -1,43 +1,62 @@
 package com.example.luisamaury.operativos_pia;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-// Esta es como si fuera su clase, por ejemplo esta en vez de ser MainActivity deberia ser Alumno
-public class Horario extends AppCompatActivity {
 
+public class I_HORARIO extends Fragment {
     MyDBHandler myDb;                           // Base de datos
     EditText idHorario, editDias,editHoraInicio, editHoraFin;// campos de texto
-    Button btnAddData;                         // Botones
-    Button btnviewAll;
-    Button btnDelete;
+    Button btnAddData, btnviewAll, btnDelete, btnviewUpdate;                       // Botones
 
-    Button btnviewUpdate;
+
+    public I_HORARIO() {
+        // Required empty public constructor
+    }
+
+
+    public static I_HORARIO newInstance(String param1, String param2) {
+        I_HORARIO fragment = new I_HORARIO();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.horario);
-        myDb = new MyDBHandler(this);
 
-        editDias = (EditText)findViewById(R.id.editText_diasHorario);
-        editHoraInicio = (EditText)findViewById(R.id.editText_horaInicioHorario);
-        editHoraFin = (EditText)findViewById(R.id.editText_horaFinHorario);
-        idHorario = (EditText)findViewById(R.id.editText_id);
+    }
 
-        btnAddData = (Button)findViewById(R.id.button_add);
-        btnviewAll = (Button)findViewById(R.id.button_viewAll);
-        btnviewUpdate= (Button)findViewById(R.id.button_update);
-        btnDelete= (Button)findViewById(R.id.button_delete);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_i__horario, container, false);
+        myDb = new MyDBHandler(getContext());
+
+        editDias = view.findViewById(R.id.editText_diasHorario);
+        editHoraInicio = view.findViewById(R.id.editText_horaInicioHorario);
+        editHoraFin = view.findViewById(R.id.editText_horaFinHorario);
+        idHorario = view.findViewById(R.id.editText_id);
+
+        btnAddData = view.findViewById(R.id.button_add);
+        btnviewAll = view.findViewById(R.id.button_viewAll);
+        btnviewUpdate= view.findViewById(R.id.button_update);
+        btnDelete= view.findViewById(R.id.button_delete);
         AddData();
         viewAll();
         UpdateData();
         DeleteData();
+        return view;
     }
 
     public void DeleteData() {
@@ -47,9 +66,9 @@ public class Horario extends AppCompatActivity {
                     public void onClick(View v) {
                         Integer deletedRows = myDb.deleteDataHorario(idHorario.getText().toString());
                         if(deletedRows > 0)
-                            Toast.makeText(Horario.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Deleted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Horario.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Deleted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -62,9 +81,9 @@ public class Horario extends AppCompatActivity {
                         boolean isUpdate = myDb.updateDataHorario(idHorario.getText().toString(),
                                 editDias.getText().toString(), editHoraInicio.getText().toString(), editHoraFin.getText().toString());
                         if(isUpdate == true)
-                            Toast.makeText(Horario.this,"Data Update",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Update",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Horario.this,"Data not Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Updated",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -76,9 +95,9 @@ public class Horario extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean isInserted = myDb.insertHorario(editDias.getText().toString(), editHoraInicio.getText().toString(), editHoraFin.getText().toString());
                         if(isInserted == true)
-                            Toast.makeText(Horario.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Inserted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Horario.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Inserted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -112,11 +131,10 @@ public class Horario extends AppCompatActivity {
     }
 
     public void showMessage(String title,String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(Message);
         builder.show();
     }
 }
-
