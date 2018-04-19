@@ -8,4 +8,50 @@
     tools:context=".AddSubjectActivity"
     tools:showIn="@layout/activity_add_subject">
 
+
+
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText_nameMateria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Materia Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText_requisitoMateria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Requisito"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_nameMateria"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnAddNewSubject"
+        android:layout_width="388dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="464dp"
+        android:background="#24b6cd"
+        android:text="Agregar Materia"
+        android:textColor="?attr/colorBackgroundFloating"
+        android:textSize="20dp"
+        android:layout_marginLeft="0dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
 </android.support.constraint.ConstraintLayout>

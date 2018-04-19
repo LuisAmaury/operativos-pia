@@ -77,7 +77,7 @@ public class Alumno extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), Integer.parseInt(editIdUsuario.getText().toString()));
+                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(),Integer.parseInt(editIdUsuario.getText().toString()));
                         if(isInserted == true)
                             Toast.makeText(Alumno.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else

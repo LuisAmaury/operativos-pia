@@ -8,4 +8,61 @@
     tools:context=".AddStudentActivity"
     tools:showIn="@layout/activity_add_student">
 
+    <EditText
+        android:id="@+id/editText_AddStudentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="88dp"
+        android:ems="10"
+        android:hint="Student Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText_AddStudentPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Student Phone"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_AddStudentName"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText_AddStudentID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="ID Usuario"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_AddStudentPhone"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+            android:id="@+id/btnAddNewStudent"
+            android:layout_width="388dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="464dp"
+            android:background="#24b6cd"
+            android:text="Agregar Alumno"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="20dp"
+            android:layout_marginLeft="0dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
+
 </android.support.constraint.ConstraintLayout>

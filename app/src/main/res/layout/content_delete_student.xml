@@ -8,4 +8,46 @@
     tools:context=".DeleteStudentActivity"
     tools:showIn="@layout/activity_delete_student">
 
+    <EditText
+        android:id="@+id/editText_idAlumno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Student ID"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText_nameAlumno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Student Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnDeleteNewStudent"
+        android:layout_width="388dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="464dp"
+        android:background="#24b6cd"
+        android:text="Eliminar Alumno"
+        android:textColor="?attr/colorBackgroundFloating"
+        android:textSize="20dp"
+        android:layout_marginLeft="0dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
 </android.support.constraint.ConstraintLayout>

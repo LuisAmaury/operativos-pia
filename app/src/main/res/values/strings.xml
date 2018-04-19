@@ -18,4 +18,12 @@
     <string name="title_activity_delete_user">DeleteUserActivity</string>
     <string name="title_activity_modify_user">ModifyUserActivity</string>
     <string name="title_activity_view_users">ViewUsersActivity</string>
+    <string name="title_activity_add_student">AddStudentActivity</string>
+    <string name="title_activity_delete_student">DeleteStudentActivity</string>
+    <string name="title_activity_modify_student">ModifyStudentActivity</string>
+    <string name="title_activity_view_student">ViewStudentActivity</string>
+    <string name="title_activity_add_subject">AddSubjectActivity</string>
+    <string name="title_activity_modify_subject">ModifySubjectActivity</string>
+    <string name="title_activity_delete_subject">DeleteSubjectActivity</string>
+    <string name="title_activity_view_subject">ViewSubjectActivity</string>
 </resources>

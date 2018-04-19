@@ -108,6 +108,78 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
         </activity>
+        <activity
+            android:name=".AddStudentActivity"
+            android:label="@string/title_activity_add_student"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".ModifyStudentActivity"
+            android:label="@string/title_activity_modify_student"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".ViewStudentActivity"
+            android:label="@string/title_activity_view_student"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".DeleteStudentActivity"
+            android:label="@string/title_activity_delete_student"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".AddSubjectActivity"
+            android:label="@string/title_activity_add_subject"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".ModifySubjectActivity"
+            android:label="@string/title_activity_modify_subject"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".DeleteSubjectActivity"
+            android:label="@string/title_activity_delete_subject"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".ViewSubjectActivity"
+            android:label="@string/title_activity_view_subject"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MenuActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -7,5 +7,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ViewStudentActivity"
     tools:showIn="@layout/activity_view_student">
-
+    <ListView
+        android:id="@+id/listViewer"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 </android.support.constraint.ConstraintLayout>

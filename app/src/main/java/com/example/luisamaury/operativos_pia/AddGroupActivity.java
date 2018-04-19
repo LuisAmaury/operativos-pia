@@ -107,8 +107,8 @@ public class AddGroupActivity extends AppCompatActivity implements AdapterView.O
             nameSubject = label;
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "You selected : " + label,
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(parent.getContext(), "You selected : " + label,
+              //      Toast.LENGTH_SHORT).show();
             Spinner spinner = (Spinner) parent;
 
         }
@@ -119,8 +119,8 @@ public class AddGroupActivity extends AppCompatActivity implements AdapterView.O
             nameHour = label;
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "You selected : " + label,
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(parent.getContext(), "You selected : " + label,
+                    //Toast.LENGTH_SHORT).show();
             Spinner spinner = (Spinner) parent;
         }
 
@@ -201,9 +201,9 @@ public class AddGroupActivity extends AppCompatActivity implements AdapterView.O
 
         boolean isInserted = db.saveNewGroup(idSubject,idHour,fit);
         if(isInserted == true)
-            Toast.makeText(AddGroupActivity.this,"Data Inserted",Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddGroupActivity.this,"Informacion Ingresada",Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(AddGroupActivity.this,"Data not Inserted",Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddGroupActivity.this,"Informacion no Ingresada",Toast.LENGTH_SHORT).show();
         editFit.setText("");
 
 

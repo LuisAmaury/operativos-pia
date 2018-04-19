@@ -76,6 +76,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     // ALUMNO
     public boolean insertDataAlumno(String name, String telefono, int idUsuario) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(alumno_col_2,name);

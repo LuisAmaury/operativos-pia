@@ -88,9 +88,13 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.Inscripcion) {
           startActivity(new Intent(MenuActivity.this,Inscripcion.class));
         } else if(id == R.id.Alumno) {
-            startActivity(new Intent(MenuActivity.this,Alumno.class));
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contenedor, new StudentFragment())
+                    .commit();
         } else if(id == R.id.Materia) {
-            startActivity(new Intent(MenuActivity.this,Materia.class));
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contenedor, new SubjectFragment())
+                    .commit();
         } else  if(id == R.id.Group) {
             fragmentManager.beginTransaction()
                     .replace(R.id.contenedor, new GroupFragment())
