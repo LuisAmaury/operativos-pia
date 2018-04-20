@@ -1,6 +1,8 @@
 package com.example.luisamaury.operativos_pia.horario;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -42,6 +44,17 @@ public class I_HORARIO extends Fragment {
         btnModifySchedule = (Button) viewer.findViewById(R.id.btnModifySchedule);
         btnViewSchedule = (Button) viewer.findViewById(R.id.btnViewSchedule);
         btnDeleteSchedule = (Button) viewer.findViewById(R.id.btnDeleteSchedule);
+
+        SharedPreferences appData = this.getActivity().getSharedPreferences("appData", Context.MODE_PRIVATE);
+        if(appData.getString("isAdmin", "").equals("false")){
+            viewer.findViewById(R.id.btnAddSchedule).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnModifySchedule).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnViewSchedule).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnDeleteSchedule).setVisibility(View.GONE);
+        } else {
+            viewer.findViewById(R.id.horarioTable).setVisibility(View.GONE);
+        }
+
         openAddSchedule();
         openModifySchedule();
         openViewSchedule();
