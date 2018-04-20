@@ -29,6 +29,8 @@ public class MENU extends AppCompatActivity {
     public void selectItemDrawer(MenuItem menuItem) {
         Fragment fragment = null;
         Class fragmentClass;
+        FragmentManager fragmentManager =  getSupportFragmentManager();
+
         switch (menuItem.getItemId()) {
             case R.id.Horario:
                 fragmentClass = I_HORARIO.class;
@@ -42,16 +44,22 @@ public class MENU extends AppCompatActivity {
             case R.id.Materia:
                 fragmentClass = I_MATERIA.class;
                 break;
+            case R.id.Group:
+                fragmentClass = I_GRUPO.class;
+                break;
+            case R.id.Usuario:
+                fragmentClass = I_USUARIO.class;
+                break;
             default:
                 fragmentClass = I_HORARIO.class;
         }
 
         try {
-            fragment = (Fragment) fragmentClass.newInstance();
+           fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        //FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content, fragment).commit();
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
