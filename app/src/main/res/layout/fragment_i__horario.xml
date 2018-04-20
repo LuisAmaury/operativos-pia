@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".I_HORARIO">
+    android:background="#df1078"
+    tools:context=".horario.I_HORARIO">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,88 +14,89 @@
         tools:layout_editor_absoluteY="8dp"
         tools:ignore="MissingConstraints">
 
-        <EditText
-            android:id="@+id/editText_id"
-            android:layout_width="wrap_content"
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Id"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="99dp" />
-        <EditText
-            android:id="@+id/editText_diasHorario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Dias"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="99dp"
-            tools:ignore="MissingConstraints" />
-        <EditText
-            android:id="@+id/editText_horaInicioHorario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Hora Inicio"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="140dp"
-            tools:ignore="MissingConstraints" />
-        <EditText
-            android:id="@+id/editText_horaFinHorario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Hora Fin"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="140dp"
-            tools:ignore="MissingConstraints" />
-
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:text="Schedule Layout jeje"
+            android:textColor="@android:color/background_light"
+            android:textSize="40sp" />
 
         <Button
-            android:id="@+id/button_add"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnAddSchedule"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="AddData"
-            android:onClick="AddData"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/my_button_add_group"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To Add Schedule Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_viewAll"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnModifySchedule"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="viewAll"
-            android:onClick="viewAll"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/my_button_bg"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To Modify Schedule Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_update"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnViewSchedule"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="UpdateData"
-            android:onClick="UpdateData"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/my_button_view_all_group"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To View All Schedule Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_delete"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnDeleteSchedule"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="DeleteData"
-            android:onClick="DeleteData"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
-
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/my_button_delete_group"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To Delete Schedule Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </FrameLayout>

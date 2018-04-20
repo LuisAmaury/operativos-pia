@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".I_MATERIA">
+    android:background="#d69213"
+    tools:context=".materia.I_MATERIA">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,78 +13,88 @@
         tools:layout_editor_absoluteY="8dp"
         tools:ignore="MissingConstraints">
 
-        <EditText
-            android:id="@+id/editText_idMateria"
-            android:layout_width="wrap_content"
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Materia ID"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="99dp"
-            tools:ignore="MissingConstraints" />
-        <EditText
-            android:id="@+id/editText_nameMateria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Materia Nombre"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="140dp"
-            tools:ignore="MissingConstraints" />
-
-        <EditText
-            android:id="@+id/editText_requisitoMateria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:text="Requisito"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="140dp"
-            tools:ignore="MissingConstraints" />
-
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:text="Subject Layout jeje"
+            android:textColor="@android:color/background_light"
+            android:textSize="40sp" />
 
         <Button
-            android:id="@+id/button_add"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnAddSubject"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="AddData"
-            android:onClick="AddData"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/my_button_add_group"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To Add Subject Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_viewAll"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnModifySubject"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="viewAll"
-            android:onClick="viewAll"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/my_button_bg"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To Modify Subject Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_update"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnViewSubject"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="UpdateData"
-            android:onClick="UpdateData"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/my_button_view_all_group"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To View All Subject Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_delete"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnDeleteSubject"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="DeleteData"
-            android:onClick="DeleteData"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="332dp"
-            tools:ignore="MissingConstraints,OnClick" />
-
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/my_button_delete_group"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="To Delete Subject Activity"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>
