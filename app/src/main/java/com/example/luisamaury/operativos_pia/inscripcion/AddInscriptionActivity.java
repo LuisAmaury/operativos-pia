@@ -1,6 +1,8 @@
 package com.example.luisamaury.operativos_pia.inscripcion;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -51,5 +53,22 @@ public class AddInscriptionActivity extends AppCompatActivity {
                 }
         );
     }
+    public void validate(){
+        try {
+            Cursor data = myDb.getAllDataInscripcion();
+            data.moveToFirst();
 
+        }catch(Exception e){
+            showMessage("Error info", e.getMessage());
+        }
+
+    }
+
+    public void showMessage(String title,String Message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
 }
