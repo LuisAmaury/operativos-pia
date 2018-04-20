@@ -17,7 +17,7 @@ public class AddStudentActivity extends AppCompatActivity {
 
     String tryout;
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editPhone, editIdUsuario;            // campos de texto
+    EditText editName, editPhone;            // campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
 
@@ -30,13 +30,9 @@ public class AddStudentActivity extends AppCompatActivity {
         myDb = new MyDBHandler(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //editName = (EditText)findViewById(R.id.editText_nameAlumno);
         editName = (EditText)findViewById(R.id.editText_AddStudentName);
         editPhone = (EditText)findViewById(R.id.editText_AddStudentPhone);
-        editIdUsuario = (EditText)findViewById(R.id.editText_AddStudentID);
-
         btnAddData = (Button)findViewById(R.id.btnAddNewStudent);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -51,28 +47,15 @@ public class AddStudentActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        /*try {
-
-                            tryout =editName.getText().toString().trim();
-                            Toast.makeText(AddStudentActivity.this,"WORKS? "+tryout,Toast.LENGTH_LONG).show();
-                        }catch(Exception e){
-                            e.getCause();
-                            //Toast.makeText(AddStudentActivity.this," Error! ",Toast.LENGTH_SHORT).show();
-
-                        }*/
-
-                        // Toast.makeText(AddGroupActivity.this,"Fit: "+fit,Toast.LENGTH_SHORT).show();
-
-                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), Integer.parseInt(editIdUsuario.getText().toString()));
+                        String username = editName.getText().toString();
+                        username = username.replace(' ', '-');
+                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), username);
                         if(isInserted == true)
                             Toast.makeText(AddStudentActivity.this,"Informacion Ingresada",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(AddStudentActivity.this,"Informacion no Ingresada",Toast.LENGTH_LONG).show();
                         editName.setText("");
-
                         editPhone.setText("");
-                        editIdUsuario.setText("");
                     }
                 }
         );

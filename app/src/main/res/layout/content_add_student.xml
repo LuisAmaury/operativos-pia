@@ -35,21 +35,6 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_AddStudentName"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editText_AddStudentID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="ID Usuario"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_AddStudentPhone"
-        tools:ignore="MissingConstraints" />
-
-
     <Button
         android:id="@+id/btnAddNewStudent"
         android:layout_width="388dp"
