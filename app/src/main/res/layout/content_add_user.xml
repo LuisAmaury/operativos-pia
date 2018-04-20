@@ -7,6 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AddUserActivity"
     tools:showIn="@layout/activity_add_user">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -15,8 +16,24 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="156dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="144dp"
         android:text="Contraseña"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
+        android:text="Nombre de Usuario"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.222"
@@ -35,11 +52,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editText_UserName"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btnAddNewUser"
         android:layout_width="388dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="464dp"
+        android:layout_marginBottom="0dp"
         android:background="#24b6cd"
         android:text="Agregar Usuario"
         android:textColor="?attr/colorBackgroundFloating"

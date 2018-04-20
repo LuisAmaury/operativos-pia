@@ -354,10 +354,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(usuario_TABLE_NAME, "idUsuario = ?",new String[] {id});
     }
-    public boolean modifyUser (String idUsuario, String password){
+    public boolean modifyUser (String idUsuario, String password, String UserName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(usuario_col_2,password);
+        contentValues.put(usuario_col_3,UserName);
         long result =db.update(usuario_TABLE_NAME, contentValues, "idUsuario = ?",new String[] { idUsuario});
         if(result == -1)
             return false;
@@ -365,10 +366,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return true;
 
     }
-    public boolean addUser(String Password){
+    public boolean addUser(String Password, String UserName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(usuario_col_2, Password);
+        contentValues.put(usuario_col_3, UserName);
         long result = db.insert(usuario_TABLE_NAME, null, contentValues);
         if(result == -1)
             return false;

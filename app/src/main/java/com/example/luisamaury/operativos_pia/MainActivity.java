@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(localDatabase.loginCheck(user, password)){
                     startActivity(new Intent(MainActivity.this,MENU.class));
-                 }
+                }
             }
         });
 
