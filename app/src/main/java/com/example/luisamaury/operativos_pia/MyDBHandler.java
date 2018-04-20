@@ -400,4 +400,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
         return cursor;
     }
+
+
+
+    ////// Ver los alumnos de un grupo //////
+    public Cursor alumnosDeUnGrupo(String idGrupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Alumno.idAlumno, Alumno.nombre FROM Alumno INNER JOIN InscripcionAlumno on Alumno.idAlumno = InscripcionAlumno.idAlumno WHERE idGrupo = " + idGrupo, null);
+        return res;
+    }
+
 }
