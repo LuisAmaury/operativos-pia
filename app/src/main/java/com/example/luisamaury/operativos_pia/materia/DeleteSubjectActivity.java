@@ -48,6 +48,10 @@ public class DeleteSubjectActivity extends AppCompatActivity {
                             Toast.makeText(DeleteSubjectActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(DeleteSubjectActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                        editName.setText("");
+
+
+                        editTextId.setText("");
                     }
                 }
         );
