@@ -28,7 +28,7 @@ public class ViewGroupsActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listViewer);
         ArrayList<String> theList = new ArrayList <>();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        String unity ;
         myDb = new MyDBHandler(this);
 
         Cursor data = myDb.viewAllGroups();
@@ -37,7 +37,9 @@ public class ViewGroupsActivity extends AppCompatActivity {
             Toast.makeText(ViewGroupsActivity.this,"No Existen Datos :(",Toast.LENGTH_SHORT).show();
         }else{
             while(data.moveToNext()){
-                theList.add(data.getString(1));
+                unity = "";
+                unity = unity +"ID Grupo: "+ data.getString(0)+"\nID Materia: "+data.getString(1)+"\nID Horario: "+data.getString(2)+"\nCupo: "+data.getString(3);
+                theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);
             }
