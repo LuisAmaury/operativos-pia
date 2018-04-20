@@ -1,44 +1,56 @@
 package com.example.luisamaury.operativos_pia;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-// Esta es como si fuera su clase, por ejemplo esta en vez de ser MainActivity deberia ser Alumno
-public class Materia extends AppCompatActivity {
 
+public class I_MATERIA extends Fragment {
     MyDBHandler myDb;                           // Base de datos
     EditText editName,editTextId, editRequisito;            // campos de texto
-    Button btnAddData;                         // Botones
-    Button btnviewAll;
-    Button btnDelete;
+    Button btnAddData, btnviewAll, btnDelete, btnviewUpdate;                         // Botones
 
-    Button btnviewUpdate;
+    public static I_MATERIA newInstance(String param1, String param2) {
+        I_MATERIA fragment = new I_MATERIA();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
-    protected void onCreate(Bundle savedInstanceState){
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.materia);
-        myDb = new MyDBHandler(this);
+    }
 
-        editName = (EditText)findViewById(R.id.editText_nameMateria);
-        editTextId = (EditText)findViewById(R.id.editText_idMateria);
-        editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_i__materi, container, false);
+        myDb = new MyDBHandler(getContext());
 
-        btnAddData = (Button)findViewById(R.id.button_add);
-        btnviewAll = (Button)findViewById(R.id.button_viewAll);
-        btnviewUpdate= (Button)findViewById(R.id.button_update);
-        btnDelete= (Button)findViewById(R.id.button_delete);
+        editName = view.findViewById(R.id.editText_nameMateria);
+        editTextId = view.findViewById(R.id.editText_idMateria);
+        editRequisito = view.findViewById(R.id.editText_requisitoMateria);
+
+        btnAddData = view.findViewById(R.id.button_add);
+        btnviewAll = view.findViewById(R.id.button_viewAll);
+        btnviewUpdate= view.findViewById(R.id.button_update);
+        btnDelete= view.findViewById(R.id.button_delete);
         AddData();
         viewAll();
         UpdateData();
         DeleteData();
+        return view;
     }
-
     public void DeleteData() {
         btnDelete.setOnClickListener(
                 new View.OnClickListener() {
@@ -46,9 +58,9 @@ public class Materia extends AppCompatActivity {
                     public void onClick(View v) {
                         Integer deletedRows = myDb.deleteDataMateria(editTextId.getText().toString());
                         if(deletedRows > 0)
-                            Toast.makeText(Materia.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Deleted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Materia.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Deleted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -62,9 +74,9 @@ public class Materia extends AppCompatActivity {
                         boolean isUpdate = myDb.updateDataMateria(editTextId.getText().toString(),
                                 editName.getText().toString(), Integer.parseInt(editRequisito.getText().toString()));
                         if(isUpdate == true)
-                            Toast.makeText(Materia.this,"Data Update",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Update",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Materia.this,"Data not Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Updated",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -77,9 +89,9 @@ public class Materia extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString()));
                         if(isInserted == true)
-                            Toast.makeText(Materia.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data Inserted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(Materia.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Data not Inserted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -112,15 +124,11 @@ public class Materia extends AppCompatActivity {
     }
 
     public void showMessage(String title,String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(Message);
         builder.show();
     }
 
-
 }
-
-
-

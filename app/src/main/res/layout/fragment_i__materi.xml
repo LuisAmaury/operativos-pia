@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.luisamaury.operativos_pia.Alumno"
-    tools:layout_editor_absoluteY="73dp">
-
+    tools:context=".I_MATERIA">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,45 +12,34 @@
         tools:layout_editor_absoluteY="8dp"
         tools:ignore="MissingConstraints">
 
-
         <EditText
-            android:id="@+id/editText_idAlumno"
+            android:id="@+id/editText_idMateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Student ID"
-            tools:ignore="MissingConstraints"
+            android:text="Materia ID"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="99dp" />
+            tools:layout_editor_absoluteY="99dp"
+            tools:ignore="MissingConstraints" />
         <EditText
-            android:id="@+id/editText_nameAlumno"
+            android:id="@+id/editText_nameMateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Student Name"
+            android:text="Materia Nombre"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="140dp"
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/editText_telefonoAlumno"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="phone"
-            android:text="Student Phone"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="140dp"
-            tools:ignore="MissingConstraints" />
-        <EditText
-            android:id="@+id/editText_idUsuarioAlumno"
+            android:id="@+id/editText_requisitoMateria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="ID Usuario"
+            android:text="Requisito"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="140dp"
             tools:ignore="MissingConstraints" />
@@ -100,4 +86,4 @@
             tools:ignore="MissingConstraints,OnClick" />
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>
