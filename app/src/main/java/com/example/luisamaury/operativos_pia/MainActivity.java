@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 if(localDatabase.loginCheck(user, password)){
-                    startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                    startActivity(new Intent(MainActivity.this,MENU.class));
                  }
             }
         });
