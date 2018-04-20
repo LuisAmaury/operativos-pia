@@ -1,8 +1,6 @@
-package com.example.luisamaury.operativos_pia;
+package com.example.luisamaury.operativos_pia.materia;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DeleteSubjectActivity extends AppCompatActivity {
+import com.example.luisamaury.operativos_pia.MyDBHandler;
+import com.example.luisamaury.operativos_pia.R;
+
+public class AddSubjectActivity extends AppCompatActivity {
+
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editRequisito;            // campos de texto
+    EditText editName,editTextId, editRequisito, editSemestre;            // campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
     Button btnDelete;
@@ -22,7 +24,7 @@ public class DeleteSubjectActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_subject);
+        setContentView(R.layout.activity_add_subject);
         myDb = new MyDBHandler(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -31,28 +33,35 @@ public class DeleteSubjectActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editName = (EditText)findViewById(R.id.editText_nameMateria);
-        editTextId = (EditText)findViewById(R.id.editText_idMateria);
 
+        editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
 
-        btnDelete= (Button)findViewById(R.id.btnDeleteNewSubject);
+        editSemestre = (EditText) findViewById(R.id.editText_semestreMateria);
 
-        DeleteData();
+        btnAddData = (Button)findViewById(R.id.btnAddNewSubject);
+
+        AddData();
+
     }
 
-    public void DeleteData() {
-        btnDelete.setOnClickListener(
+
+
+    public  void AddData() {
+        btnAddData.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Integer deletedRows = myDb.deleteDataMateria(editTextId.getText().toString());
-                        if(deletedRows > 0)
-                            Toast.makeText(DeleteSubjectActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
+                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString())
+                                , Integer.parseInt(editSemestre.getText().toString()));
+                        if(isInserted == true)
+                            Toast.makeText(AddSubjectActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(DeleteSubjectActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddSubjectActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
                     }
                 }
         );
     }
+
 
 
     public void showMessage(String title,String Message) {
@@ -62,4 +71,5 @@ public class DeleteSubjectActivity extends AppCompatActivity {
         builder.setMessage(Message);
         builder.show();
     }
+
 }

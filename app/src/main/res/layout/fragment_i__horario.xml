@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#df1078"
-    tools:context=".I_HORARIO">
+    tools:context=".horario.I_HORARIO">
 
     <LinearLayout
         android:layout_width="match_parent"

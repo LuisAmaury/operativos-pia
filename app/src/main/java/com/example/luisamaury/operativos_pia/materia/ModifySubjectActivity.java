@@ -1,8 +1,6 @@
-package com.example.luisamaury.operativos_pia;
+package com.example.luisamaury.operativos_pia.materia;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,19 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddSubjectActivity extends AppCompatActivity {
+import com.example.luisamaury.operativos_pia.MyDBHandler;
+import com.example.luisamaury.operativos_pia.R;
+
+public class ModifySubjectActivity extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editRequisito;            // campos de texto
-    Button btnAddData;                         // Botones
-    Button btnviewAll;
-    Button btnDelete;
+    EditText editName,editTextId, editRequisito, editSemestre;            // campos de texto
+
 
     Button btnviewUpdate;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_subject);
+        setContentView(R.layout.activity_modify_subject);
         myDb = new MyDBHandler(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -32,32 +31,35 @@ public class AddSubjectActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editName = (EditText)findViewById(R.id.editText_nameMateria);
-
+        editTextId = (EditText)findViewById(R.id.editText_idMateria);
         editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
+        editSemestre = (EditText) findViewById(R.id.editText_semestreMateria);
 
-        btnAddData = (Button)findViewById(R.id.btnAddNewSubject);
+        btnviewUpdate= (Button)findViewById(R.id.btnModifyNewSubject);
 
-        AddData();
+
+        UpdateData();
 
     }
 
 
 
-    public  void AddData() {
-        btnAddData.setOnClickListener(
+    public void UpdateData() {
+        btnviewUpdate.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString()));
-                        if(isInserted == true)
-                            Toast.makeText(AddSubjectActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                        boolean isUpdate = myDb.updateDataMateria(editTextId.getText().toString(),
+                                editName.getText().toString(), Integer.parseInt(editRequisito.getText().toString())
+                                ,Integer.parseInt(editSemestre.getText().toString()));
+                        if(isUpdate == true)
+                            Toast.makeText(ModifySubjectActivity.this,"Data Update",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(AddSubjectActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ModifySubjectActivity.this,"Data not Updated",Toast.LENGTH_LONG).show();
                     }
                 }
         );
     }
-
 
 
     public void showMessage(String title,String Message) {

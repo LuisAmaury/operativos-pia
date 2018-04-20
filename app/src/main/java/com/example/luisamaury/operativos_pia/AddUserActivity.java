@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.luisamaury.operativos_pia.R;
+
 public class AddUserActivity extends AppCompatActivity {
     String nameSubject, subID, idSubject, nameHour, nomUser, fit;
     Button btnAddUser;

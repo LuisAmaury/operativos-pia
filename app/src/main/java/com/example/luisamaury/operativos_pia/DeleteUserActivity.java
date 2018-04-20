@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.luisamaury.operativos_pia.R;
+
 public class DeleteUserActivity extends AppCompatActivity {
     MyDBHandler myDb;
     Button btnDelete;
