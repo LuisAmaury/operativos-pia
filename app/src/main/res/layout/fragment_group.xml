@@ -7,17 +7,7 @@
     tools:context=".GroupFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
-        android:layout_marginTop="20dp"
-        android:text="Group Layout jeje"
-        android:textSize="40sp" />
+
 
     <Button
         android:id="@+id/btnOpen"
@@ -34,7 +24,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="2dp"
-        android:text="To Add Group Activity"
+        android:text="Agregar Grupo"
         android:textColor="@android:color/background_light"
         android:textSize="18dp"
         android:textStyle="bold"/>
@@ -52,7 +42,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="2dp"
-        android:text="To Modify Group Activity"
+        android:text="Modificar Grupo"
         android:textColor="@android:color/background_light"
         android:textSize="18dp"
         android:textStyle="bold"/>
@@ -70,7 +60,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="2dp"
-        android:text="To View All Groups Activity"
+        android:text="Mostrar Grupos"
         android:textColor="@android:color/background_light"
         android:textSize="18dp"
         android:textStyle="bold"/>
@@ -88,7 +78,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="2dp"
-        android:text="To Delete Group Activity"
+        android:text="Eliminar Grupo"
         android:textColor="@android:color/background_light"
         android:textSize="18dp"
         android:textStyle="bold"/>

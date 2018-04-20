@@ -14,16 +14,7 @@
         tools:ignore="MissingConstraints">
 
         <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="11dp"
-            android:text="Subject Layout jeje"
-            android:textColor="@android:color/background_light"
-            android:textSize="40sp" />
+
 
         <Button
             android:id="@+id/btnAddSubject"
@@ -38,7 +29,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Add Subject Activity"
+            android:text="Agregar Materia"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -56,7 +47,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Modify Subject Activity"
+            android:text="Modificar Materia"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -74,7 +65,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To View All Subject Activity"
+            android:text="Mostrar Materias"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -92,7 +83,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Delete Subject Activity"
+            android:text="Eliminar Materia"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />

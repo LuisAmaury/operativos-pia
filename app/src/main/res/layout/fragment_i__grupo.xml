@@ -3,19 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eecda4"
     tools:context=".I_GRUPO">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
-        android:layout_marginTop="20dp"
-        android:text="Group Layout jeje"
-        android:textSize="40sp" />
+
 
     <Button
         android:id="@+id/btnOpen"
