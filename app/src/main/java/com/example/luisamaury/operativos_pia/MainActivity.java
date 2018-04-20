@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
                     cursor.moveToFirst();
                     editor.putString("username", cursor.getString(cursor.getColumnIndex("username")));
                     editor.putString("isAdmin", cursor.getString(cursor.getColumnIndex("isAdmin")));
+                    editor.putString("idUsuario", cursor.getString(cursor.getColumnIndex("idUsuario")));
+
                     editor.commit();
                     cursor.close();
                     startActivity(new Intent(MainActivity.this,MENU.class));
