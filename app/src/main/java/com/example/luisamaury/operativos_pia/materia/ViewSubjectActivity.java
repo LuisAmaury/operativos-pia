@@ -39,7 +39,8 @@ public class ViewSubjectActivity extends AppCompatActivity {
         }else{
             while(data.moveToNext()){
                 unity = "";
-                unity = unity + data.getString(0)+".- "+data.getString(1)+"\n\tRequisito: "+data.getString(2);
+
+                unity = unity+"ID Materia: " + data.getString(0)+"\nMateria: "+data.getString(1)+"\nRequisito: "+data.getString(2)+"\nSemestre: "+data.getString(3);
                 theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);

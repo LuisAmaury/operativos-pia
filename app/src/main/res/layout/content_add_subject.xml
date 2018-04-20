@@ -30,23 +30,24 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Requisito"
+        android:digits="0123456789"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_nameMateria"
         tools:ignore="MissingConstraints" />
-
     <EditText
-        android:id="@+id/editText_semestreMateria"
+        android:id="@+id/editText_Semester"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:digits="0123456789"
         android:hint="Semestre"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_nameMateria"
+        app:layout_constraintTop_toBottomOf="@+id/editText_requisitoMateria"
         tools:ignore="MissingConstraints" />
 
     <Button

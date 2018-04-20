@@ -14,16 +14,7 @@
         tools:ignore="MissingConstraints">
 
         <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="11dp"
-            android:text="Inscription Layout jeje"
-            android:textColor="@android:color/background_light"
-            android:textSize="40sp" />
+
 
         <Button
             android:id="@+id/btnAddInscription"
@@ -38,7 +29,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Add Inscription Activity"
+            android:text="Nueva Inscripcion"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -56,7 +47,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Modify Inscription Activity"
+            android:text="Modificar Inscripcion"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -74,7 +65,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To View All Inscription Activity"
+            android:text="Mostrar Inscripciones"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -92,7 +83,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
-            android:text="To Delete Inscription Activity"
+            android:text="Eliminar Inscripcion"
             android:textColor="@android:color/background_light"
             android:textSize="18dp"
             android:textStyle="normal" />
