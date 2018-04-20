@@ -45,7 +45,7 @@ public class I_GRUPO extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
 
-        viewer = inflater.inflate(R.layout.fragment_i__grupo, container, false);
+        viewer = inflater.inflate(R.layout.fragment_group, container, false);
         btnOpen = (Button) viewer.findViewById(R.id.btnOpen);
         btnModifyGroup = (Button) viewer.findViewById(R.id.btnModifyGroup);
         btnViewGroups = (Button) viewer.findViewById(R.id.btnViewGroups);
