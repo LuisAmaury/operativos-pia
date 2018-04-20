@@ -235,11 +235,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return db.delete(inscripcionAlumno_TABLE_NAME, "idInscripcionAlumno = ?", new String[] {idInscripcionAlumno});
     }
 
-    public Cursor getInscripcionAlumno(int idAlumno){
+    public Cursor getInscripcionAlumno(String idAlumno){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME, null);
+        Cursor res = db.rawQuery("SELECT * FROM "+inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?;",new String[] {idAlumno});
         return res;
     }
+
 
 
     public List<String> getAllSubjects(){

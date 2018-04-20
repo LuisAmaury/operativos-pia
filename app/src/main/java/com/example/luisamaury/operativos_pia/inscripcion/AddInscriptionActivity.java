@@ -39,29 +39,39 @@ public class AddInscriptionActivity extends AppCompatActivity {
 
         AddData();
     }
+
     public  void AddData() {
         btnAddData.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertInscripcion(idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
-                        if(isInserted == true)
-                            Toast.makeText(AddInscriptionActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(AddInscriptionActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+
+                        if(validate()) {
+                            boolean isInserted = myDb.insertInscripcion(idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
+                            if (isInserted == true)
+                                Toast.makeText(AddInscriptionActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                        }else
+                            Toast.makeText(AddInscriptionActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+
                     }
                 }
         );
     }
-    public void validate(){
+
+    public boolean validate(){
+        boolean val = true;
         try {
-            Cursor data = myDb.getAllDataInscripcion();
+            Cursor data = myDb.getInscripcionAlumno("2");//Falta poner el alumno que se este utilizando actualmente
             data.moveToFirst();
+            if(data.getCount() > 6){
+                val = false;
+                throw new Exception("Usted ya ha inscrito 6 materias.");
+            }
 
         }catch(Exception e){
             showMessage("Error info", e.getMessage());
         }
-
+    return val;
     }
 
     public void showMessage(String title,String Message) {
