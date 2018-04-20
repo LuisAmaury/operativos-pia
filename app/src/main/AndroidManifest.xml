@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".MENU" />
         <activity
-            android:name=".AddGroupActivity"
+            android:name=".grupo.AddGroupActivity"
             android:label="@string/title_activity_add_group"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -27,7 +27,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".DeleteGroupActivity"
+            android:name=".grupo.DeleteGroupActivity"
             android:label="@string/title_activity_delete_group"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -36,7 +36,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ViewGroupsActivity"
+            android:name=".grupo.ViewGroupsActivity"
             android:label="@string/title_activity_view_groups"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -45,7 +45,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ModifyGroupActivity"
+            android:name=".grupo.ModifyGroupActivity"
             android:label="@string/title_activity_modify_group"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -90,7 +90,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".AddStudentActivity"
+            android:name=".alumno.AddStudentActivity"
             android:label="@string/title_activity_add_student"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -99,7 +99,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".DeleteStudentActivity"
+            android:name=".alumno.DeleteStudentActivity"
             android:label="@string/title_activity_delete_student"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -108,7 +108,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ModifyStudentActivity"
+            android:name=".alumno.ModifyStudentActivity"
             android:label="@string/title_activity_modify_student"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -117,7 +117,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ViewStudentActivity"
+            android:name=".alumno.ViewStudentActivity"
             android:label="@string/title_activity_view_student"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -126,7 +126,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".AddSubjectActivity"
+            android:name=".materia.AddSubjectActivity"
             android:label="@string/title_activity_add_subject"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -135,7 +135,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".DeleteSubjectActivity"
+            android:name=".materia.DeleteSubjectActivity"
             android:label="@string/title_activity_delete_subject"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -144,7 +144,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ModifySubjectActivity"
+            android:name=".materia.ModifySubjectActivity"
             android:label="@string/title_activity_modify_subject"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -153,7 +153,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ViewSubjectActivity"
+            android:name=".materia.ViewSubjectActivity"
             android:label="@string/title_activity_view_subject"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -162,7 +162,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".AddScheduleActivity"
+            android:name=".horario.AddScheduleActivity"
             android:label="@string/title_activity_add_schedule"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -171,7 +171,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".DeleteScheduleActivity"
+            android:name=".horario.DeleteScheduleActivity"
             android:label="@string/title_activity_delete_schedule"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -180,7 +180,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ModifyScheduleActivity"
+            android:name=".horario.ModifyScheduleActivity"
             android:label="@string/title_activity_modify_schedule"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -189,7 +189,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ViewScheduleActivity"
+            android:name=".horario.ViewScheduleActivity"
             android:label="@string/title_activity_view_schedule"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -198,7 +198,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".AddInscriptionActivity"
+            android:name=".inscripcion.AddInscriptionActivity"
             android:label="@string/title_activity_add_inscription"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -207,7 +207,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".DeleteInscriptionActivity"
+            android:name=".inscripcion.DeleteInscriptionActivity"
             android:label="@string/title_activity_delete_inscription"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -216,7 +216,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ViewInscriptionActivity"
+            android:name=".inscripcion.ViewInscriptionActivity"
             android:label="@string/title_activity_view_inscription"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">
@@ -225,7 +225,7 @@
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
         <activity
-            android:name=".ModifyInscriptionActivity"
+            android:name=".inscripcion.ModifyInscriptionActivity"
             android:label="@string/title_activity_modify_inscription"
             android:parentActivityName=".MENU"
             android:theme="@style/AppTheme.NoActionBar">

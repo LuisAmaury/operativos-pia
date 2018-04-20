@@ -30,6 +30,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String materia_col_1 = "idMateria";
     public static final String materia_col_2 = "nombre";
     public static final String materia_col_3 = "requisito";
+    public static final String materia_col_4 = "semestre";
 
     public static final String grupo_TABLE_NAME = "grupo";
     public static final String grupo_col_1 = "idGrupo";
@@ -56,7 +57,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.execSQL("create table " + usuario_TABLE_NAME +" (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,contrasena TEXT, username TEXT, isAdmin TEXT)");
         db.execSQL("create table " + alumno_TABLE_NAME +" (idAlumno INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, telefono TEXT, idUsuario INTEGER, FOREIGN KEY(idUsuario) REFERENCES " + usuario_TABLE_NAME + "(idUsuario))");
         db.execSQL("create table " + horario_TABLE_NAME +" (idHorario INTEGER PRIMARY KEY AUTOINCREMENT,dias TEXT, horaInicio TEXT, horaFin TEXT)");
-        db.execSQL("create table " + materia_TABLE_NAME +" (idMateria INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, requisito INTEGER)");
+        db.execSQL("create table " + materia_TABLE_NAME +" (idMateria INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, requisito INTEGER, semestre INTEGER)");
         db.execSQL("create table " + grupo_TABLE_NAME +" (idGrupo INTEGER PRIMARY KEY AUTOINCREMENT, idMateria INTEGER, idHorario INTEGER, cupo INTEGER, FOREIGN KEY(idMateria) REFERENCES " + materia_TABLE_NAME + "(idMateria), FOREIGN KEY(idHorario) REFERENCES " + horario_TABLE_NAME + "(idHorario))");
         db.execSQL("create table " + inscripcionAlumno_TABLE_NAME +" (idInscripcionAlumno INTEGER PRIMARY KEY AUTOINCREMENT,idAlumno INTEGER, idGrupo INTEGER, calificacion INTEGER, FOREIGN KEY(idAlumno) REFERENCES " + alumno_TABLE_NAME + "(idAlumno), FOREIGN KEY(idGrupo) REFERENCES " + grupo_TABLE_NAME + "(idGrupo))");
         prechargingData(db);
@@ -87,14 +88,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     // ALUMNO
-    public boolean insertDataAlumno(String name, String telefono, int idUsuario) {
+    public boolean insertDataAlumno(String name, String telefono, String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(alumno_col_2,name);
+        contentValues.put(alumno_col_2, name);
         contentValues.put(alumno_col_3, telefono);
-        contentValues.put(alumno_col_4, idUsuario);
-        long result = db.insert(alumno_TABLE_NAME,null ,contentValues);
-        if(result == -1)
+        long insertionAlumni = db.insert(alumno_TABLE_NAME,null ,contentValues);
+
+        contentValues.clear();
+        contentValues.put(usuario_col_3, username);
+        contentValues.put(usuario_col_2, "12");
+        contentValues.put(usuario_col_4, "false");
+        long insertionUser = db.insert(usuario_TABLE_NAME, null, contentValues);
+        db.close();
+
+        if((insertionAlumni + insertionUser) <= 0)
             return false;
         else
             return true;
@@ -123,11 +131,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
     // MATERIA
 
-    public boolean insertDataMateria(String name, int requisito) {
+    public boolean insertDataMateria(String name, int requisito, int semestre) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(materia_col_2, name);
         contentValues.put(materia_col_3, requisito);
+        contentValues.put(materia_col_4, semestre);
         long result = db.insert(materia_TABLE_NAME, null, contentValues);
         if(result == -1)
             return false;
@@ -141,12 +150,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateDataMateria(String id,String name, int requisito) {
+    public boolean updateDataMateria(String id,String name, int requisito, int semestre) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(materia_col_1,id);
         contentValues.put(materia_col_2,name);
         contentValues.put(materia_col_3, requisito);
+        contentValues.put(materia_col_4, semestre);
         db.update(materia_TABLE_NAME, contentValues, "idMateria = ?",new String[] { id });
         return true;
     }
@@ -250,10 +260,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         // returning lables
         return labels;
     }
+
     public Cursor getSubjectID(String subject){
         String id = new String();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT idAlumno FROM "+materia_TABLE_NAME+" WHERE nombre = ?; ", new String[] {subject});
+        Cursor res = db.rawQuery("SELECT idMateria FROM "+materia_TABLE_NAME+" WHERE nombre = ?; ", new String[] {subject});
         //Cursor c = db.rawQuery("SELECT * FROM "+alumno_TABLE_NAME+" WHERE TRIM(nombre) = '"+subject.trim()+"'", null);
         //Cursor res = db.rawQuery("select * from "+alumno_TABLE_NAME,null);
 
@@ -292,7 +303,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Cursor getScheduleId(String hour){
         String id = new String();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT idAlumno FROM "+horario_TABLE_NAME+" WHERE dias = ?; ", new String[] {hour});
+        Cursor res = db.rawQuery("SELECT idHorario FROM "+horario_TABLE_NAME+" WHERE dias = ?; ", new String[] {hour});
         //Cursor c = db.rawQuery("SELECT * FROM "+alumno_TABLE_NAME+" WHERE TRIM(nombre) = '"+subject.trim()+"'", null);
         //Cursor res = db.rawQuery("select * from "+alumno_TABLE_NAME,null);
 
@@ -355,10 +366,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(usuario_TABLE_NAME, "idUsuario = ?",new String[] {id});
     }
-    public boolean modifyUser (String idUsuario, String password){
+    public boolean modifyUser (String idUsuario, String password, String UserName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(usuario_col_2,password);
+        contentValues.put(usuario_col_3,UserName);
         long result =db.update(usuario_TABLE_NAME, contentValues, "idUsuario = ?",new String[] { idUsuario});
         if(result == -1)
             return false;
@@ -366,10 +378,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return true;
 
     }
-    public boolean addUser(String Password){
+    public boolean addUser(String Password, String UserName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(usuario_col_2, Password);
+        contentValues.put(usuario_col_3, UserName);
         long result = db.insert(usuario_TABLE_NAME, null, contentValues);
         if(result == -1)
             return false;

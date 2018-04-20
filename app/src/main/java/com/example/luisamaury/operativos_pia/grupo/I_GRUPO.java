@@ -1,8 +1,5 @@
-package com.example.luisamaury.operativos_pia;
+package com.example.luisamaury.operativos_pia.grupo;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,17 +7,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.content.Intent;
+
+import com.example.luisamaury.operativos_pia.MyDBHandler;
+import com.example.luisamaury.operativos_pia.R;
 
 
-public class GroupFragment extends Fragment {
+public class I_GRUPO extends Fragment {
     View viewer;
     Button btnOpen;
     Button btnModifyGroup, btnViewGroups, btnDelete;
+    MyDBHandler myDb;                           // Base de datos
+    EditText idHorario, editDias,editHoraInicio, editHoraFin;// campos de texto
+    Button btnAddData, btnviewAll, btnviewUpdate;                       // Botones
+
+    public I_GRUPO() {
+        // Required empty public constructor
+    }
+
+    // TODO: Rename and change types and number of parameters
+    public static I_GRUPO newInstance(String param1, String param2) {
+        I_GRUPO fragment = new I_GRUPO();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Group Fragment");
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -28,19 +45,19 @@ public class GroupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
 
-        viewer = inflater.inflate(R.layout.fragment_group, container, false);
+        viewer = inflater.inflate(R.layout.fragment_i__grupo, container, false);
         btnOpen = (Button) viewer.findViewById(R.id.btnOpen);
         btnModifyGroup = (Button) viewer.findViewById(R.id.btnModifyGroup);
         btnViewGroups = (Button) viewer.findViewById(R.id.btnViewGroups);
         btnDelete = (Button) viewer.findViewById(R.id.btnDeleteGroup);
-       /* Open();
-        openModifyGroup();
+       Open();
+      openModifyGroup();
         openViewGroups();
-        openDeleteGroup();*/
+        openDeleteGroup();
         return viewer;
     }
 
-    /*public void Open(){
+    public void Open(){
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,5 +100,7 @@ public class GroupFragment extends Fragment {
 
             }
         });
-    }*/
+    }
+
+
 }

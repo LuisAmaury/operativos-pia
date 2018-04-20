@@ -11,6 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.luisamaury.operativos_pia.alumno.I_ALUMNO;
+import com.example.luisamaury.operativos_pia.horario.I_HORARIO;
+import com.example.luisamaury.operativos_pia.inscripcion.I_INSCRIPCION;
+import com.example.luisamaury.operativos_pia.grupo.I_GRUPO;
+import com.example.luisamaury.operativos_pia.materia.I_MATERIA;
+
 public class MENU extends AppCompatActivity {
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle mToogle;

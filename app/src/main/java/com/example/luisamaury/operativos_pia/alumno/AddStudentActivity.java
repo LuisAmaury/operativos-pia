@@ -1,8 +1,6 @@
-package com.example.luisamaury.operativos_pia;
+package com.example.luisamaury.operativos_pia.alumno;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,36 +9,37 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddSubjectActivity extends AppCompatActivity {
+import com.example.luisamaury.operativos_pia.MyDBHandler;
+import com.example.luisamaury.operativos_pia.R;
 
+public class AddStudentActivity extends AppCompatActivity {
+
+
+    String tryout;
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editRequisito;            // campos de texto
+    EditText editName, editPhone;            // campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
-    Button btnDelete;
+
 
     Button btnviewUpdate;
-
-    protected void onCreate(Bundle savedInstanceState){
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_subject);
+        setContentView(R.layout.activity_add_student);
         myDb = new MyDBHandler(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
+        editName = (EditText)findViewById(R.id.editText_AddStudentName);
+        editPhone = (EditText)findViewById(R.id.editText_AddStudentPhone);
+        btnAddData = (Button)findViewById(R.id.btnAddNewStudent);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        editName = (EditText)findViewById(R.id.editText_nameMateria);
 
-        editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
-
-        btnAddData = (Button)findViewById(R.id.btnAddNewSubject);
 
         AddData();
 
     }
-
 
 
     public  void AddData() {
@@ -48,11 +47,15 @@ public class AddSubjectActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString()));
+                        String username = editName.getText().toString();
+                        username = username.replace(' ', '-');
+                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), username);
                         if(isInserted == true)
-                            Toast.makeText(AddSubjectActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddStudentActivity.this,"Informacion Ingresada",Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(AddSubjectActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddStudentActivity.this,"Informacion no Ingresada",Toast.LENGTH_LONG).show();
+                        editName.setText("");
+                        editPhone.setText("");
                     }
                 }
         );
@@ -67,5 +70,4 @@ public class AddSubjectActivity extends AppCompatActivity {
         builder.setMessage(Message);
         builder.show();
     }
-
 }

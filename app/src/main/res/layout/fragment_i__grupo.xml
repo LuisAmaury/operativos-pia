@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".I_GRUPO">
+    android:background="#5858FA"
+    tools:context=".grupo.I_GRUPO">
 
     <TextView
         android:id="@+id/textView2"
