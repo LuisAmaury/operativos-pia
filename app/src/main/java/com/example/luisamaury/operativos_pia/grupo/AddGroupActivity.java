@@ -151,11 +151,11 @@ public class AddGroupActivity extends AppCompatActivity implements AdapterView.O
 
                             while (aid.moveToNext()) { // puesto a que comienza en -1, debemos de pasarlo al siguiente, y se supone que solo debe tener 1 valor
                                 idSubject = aid.getString(0);
-                                // buffer.append("ID Subject :"+ idSubject+"\n");
+                                buffer.append("ID Subject :"+ idSubject+"\n");
                             }
                             while (spin2.moveToNext()) { // puesto a que comienza en -1, debemos de pasarlo al siguiente, y se supone que solo debe tener 1 valor
                                 idHour = spin2.getString(0);
-                                // buffer.append("ID Hour :"+ idHour+"\n");
+                                buffer.append("ID Hour :"+ idHour+"\n");
                             }
                         }catch(Exception e){
                             e.getCause();
@@ -166,7 +166,12 @@ public class AddGroupActivity extends AppCompatActivity implements AdapterView.O
                         if(!validate()){
                             Toast.makeText(AddGroupActivity.this," Error! ",Toast.LENGTH_SHORT).show();
                         }else{
-                            saveNewGroup();
+                            try {
+                                saveNewGroup();
+                            }catch(Exception e){
+                                e.getCause();
+                                Toast.makeText(AddGroupActivity.this," Error al insertar: "+e.getCause(),Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         // Show all data
@@ -199,8 +204,10 @@ public class AddGroupActivity extends AppCompatActivity implements AdapterView.O
         return valid;
     }
     public void saveNewGroup(){
-        //Toast.makeText(AddGroupActivity.this," WORK WORK! ",Toast.LENGTH_SHORT).show();
-
+        /*Toast.makeText(AddGroupActivity.this," idSubject: "+idSubject,Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddGroupActivity.this," idHour: "+idHour,Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddGroupActivity.this," fit: "+fit,Toast.LENGTH_SHORT).show();
+*/
         boolean isInserted = db.saveNewGroup(idSubject,idHour,fit);
         if(isInserted == true)
             Toast.makeText(AddGroupActivity.this,"Informacion Ingresada",Toast.LENGTH_SHORT).show();
