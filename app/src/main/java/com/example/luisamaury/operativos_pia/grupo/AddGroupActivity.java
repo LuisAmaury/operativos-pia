@@ -1,9 +1,7 @@
-package com.example.luisamaury.operativos_pia;
+package com.example.luisamaury.operativos_pia.grupo;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,13 +13,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.luisamaury.operativos_pia.MyDBHandler;
+import com.example.luisamaury.operativos_pia.R;
+
 import java.util.List;
 
-public class ModifyGroupActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
+public class AddGroupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+
     Spinner spinner, spinner2;
-    String nameSubject, subID, idSubject, nameHour, idHour,fit,  idGroup;
+    String nameSubject, subID, idSubject, nameHour, idHour, fit;
     Button btnViewSubjectID;
-    EditText editFit, editIdGroup;
+    EditText editFit;
     View viewer;
     Integer namePosition;
 
@@ -29,14 +32,13 @@ public class ModifyGroupActivity extends AppCompatActivity  implements AdapterVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modify_group);
+        setContentView(R.layout.activity_add_group);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner)findViewById(R.id.spinner2);
         editFit = (EditText) findViewById(R.id.editText_Fit);
-        editIdGroup = (EditText)findViewById(R.id.editText_GroupID);
         btnViewSubjectID = (Button)findViewById(R.id.btnViewID);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -107,8 +109,8 @@ public class ModifyGroupActivity extends AppCompatActivity  implements AdapterVi
             nameSubject = label;
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "You selected : " + label,
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(parent.getContext(), "You selected : " + label,
+            //      Toast.LENGTH_SHORT).show();
             Spinner spinner = (Spinner) parent;
 
         }
@@ -119,8 +121,8 @@ public class ModifyGroupActivity extends AppCompatActivity  implements AdapterVi
             nameHour = label;
 
             // Showing selected spinner item
-            Toast.makeText(parent.getContext(), "You selected : " + label,
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(parent.getContext(), "You selected : " + label,
+            //Toast.LENGTH_SHORT).show();
             Spinner spinner = (Spinner) parent;
         }
 
@@ -157,14 +159,14 @@ public class ModifyGroupActivity extends AppCompatActivity  implements AdapterVi
                             }
                         }catch(Exception e){
                             e.getCause();
-                            Toast.makeText(ModifyGroupActivity.this," Error! ",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddGroupActivity.this," Error! ",Toast.LENGTH_SHORT).show();
 
                         }
                         //VALIDATE
                         if(!validate()){
-                            Toast.makeText(ModifyGroupActivity.this," Error! ",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddGroupActivity.this," Error! ",Toast.LENGTH_SHORT).show();
                         }else{
-                            modifyGroup();
+                            saveNewGroup();
                         }
 
                         // Show all data
@@ -185,32 +187,27 @@ public class ModifyGroupActivity extends AppCompatActivity  implements AdapterVi
     public boolean validate(){
         boolean valid = true;
         fit =editFit.getText().toString().trim();
-        idGroup =editIdGroup.getText().toString().trim();
-        // Toast.makeText(ModifyGroupActivity.this,"Fit: "+fit,Toast.LENGTH_SHORT).show();
+
+        // Toast.makeText(AddGroupActivity.this,"Fit: "+fit,Toast.LENGTH_SHORT).show();
 
         if (fit.isEmpty() )
         {
             editFit.setError("Porfavor llena el Cupo");
             valid = false;
         }
-        if (idGroup.isEmpty() )
-        {
-            editIdGroup.setError("Porfavor llena el ID del Grupo");
-            valid = false;
-        }
 
         return valid;
     }
-    public void modifyGroup(){
+    public void saveNewGroup(){
         //Toast.makeText(AddGroupActivity.this," WORK WORK! ",Toast.LENGTH_SHORT).show();
 
-        boolean isInserted = db.modifyGroup(idGroup,idSubject,idHour,fit);
+        boolean isInserted = db.saveNewGroup(idSubject,idHour,fit);
         if(isInserted == true)
-            Toast.makeText(ModifyGroupActivity.this,"Data Modificada",Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddGroupActivity.this,"Informacion Ingresada",Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(ModifyGroupActivity.this,"Data no Modificada",Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddGroupActivity.this,"Informacion no Ingresada",Toast.LENGTH_SHORT).show();
         editFit.setText("");
-        editIdGroup.setText("");
+
 
     }
 

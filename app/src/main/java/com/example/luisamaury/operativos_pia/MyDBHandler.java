@@ -249,10 +249,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         // returning lables
         return labels;
     }
+
     public Cursor getSubjectID(String subject){
         String id = new String();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT idAlumno FROM "+materia_TABLE_NAME+" WHERE nombre = ?; ", new String[] {subject});
+        Cursor res = db.rawQuery("SELECT idMateria FROM "+materia_TABLE_NAME+" WHERE nombre = ?; ", new String[] {subject});
         //Cursor c = db.rawQuery("SELECT * FROM "+alumno_TABLE_NAME+" WHERE TRIM(nombre) = '"+subject.trim()+"'", null);
         //Cursor res = db.rawQuery("select * from "+alumno_TABLE_NAME,null);
 
@@ -291,7 +292,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Cursor getScheduleId(String hour){
         String id = new String();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT idAlumno FROM "+horario_TABLE_NAME+" WHERE dias = ?; ", new String[] {hour});
+        Cursor res = db.rawQuery("SELECT idHorario FROM "+horario_TABLE_NAME+" WHERE dias = ?; ", new String[] {hour});
         //Cursor c = db.rawQuery("SELECT * FROM "+alumno_TABLE_NAME+" WHERE TRIM(nombre) = '"+subject.trim()+"'", null);
         //Cursor res = db.rawQuery("select * from "+alumno_TABLE_NAME,null);
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ViewStudentActivity"
+    tools:context=".alumno.ViewStudentActivity"
     tools:showIn="@layout/activity_view_student">
     <ListView
         android:id="@+id/listViewer"
