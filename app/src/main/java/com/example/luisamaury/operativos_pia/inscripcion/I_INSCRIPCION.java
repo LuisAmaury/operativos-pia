@@ -1,6 +1,8 @@
 package com.example.luisamaury.operativos_pia.inscripcion;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,8 +16,8 @@ import com.example.luisamaury.operativos_pia.R;
 public class I_INSCRIPCION extends Fragment {
 
     View viewer;
-    Button btnAddInscription;
-    Button btnModifyInscription, btnViewInscription, btnDeleteInscription;
+    Button btnAddInscription, btnAddInscriptionStudent;
+    Button btnModifyInscription, btnViewInscription, btnDeleteInscription, btnDeleteInscriptionStudent;
 
 
     public I_INSCRIPCION() {
@@ -42,10 +44,27 @@ public class I_INSCRIPCION extends Fragment {
         btnModifyInscription = (Button) viewer.findViewById(R.id.btnModifyInscription);
         btnViewInscription = (Button) viewer.findViewById(R.id.btnViewInscription);
         btnDeleteInscription = (Button) viewer.findViewById(R.id.btnDeleteInscription);
+        btnAddInscriptionStudent = (Button) viewer.findViewById(R.id.btnAddInscripcionAlumno);
+        btnDeleteInscriptionStudent = (Button) viewer.findViewById(R.id.btnDeleteInscripcionAlumno);
+
+        SharedPreferences appData = this.getActivity().getSharedPreferences("appData", Context.MODE_PRIVATE);
+        if(appData.getString("isAdmin", "").equals("false")){
+            viewer.findViewById(R.id.btnAddInscription).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnModifyInscription).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnViewInscription).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnDeleteInscription).setVisibility(View.GONE);
+        } else {
+            viewer.findViewById(R.id.btnAddInscripcionAlumno).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnDeleteInscripcionAlumno).setVisibility(View.GONE);
+        }
+
         openAddInscription();
         openModifyInscription();
         openViewInscription();
         openDeleteInscription();
+        openAddInscriptionStudent();
+        openDeleteInscriptionStudent();
+
         return viewer;
     }
 
@@ -60,6 +79,19 @@ public class I_INSCRIPCION extends Fragment {
             }
         });
     }
+
+    public void openAddInscriptionStudent(){
+        btnAddInscriptionStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), AddInscriptionStudentActivity.class);
+                in.putExtra("Some","Some Data");
+                startActivity(in);
+
+            }
+        });
+    }
+
     public void openModifyInscription(){
         btnModifyInscription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +122,17 @@ public class I_INSCRIPCION extends Fragment {
                 in.putExtra("Some","Some Data");
                 startActivity(in);
 
+            }
+        });
+    }
+
+    public void openDeleteInscriptionStudent(){
+        btnDeleteInscriptionStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), DeleteInscriptionStudentActivity.class);
+                in.putExtra("Some","Some Data");
+                startActivity(in);
             }
         });
     }
