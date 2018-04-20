@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
     //information of database
@@ -43,18 +44,28 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String usuario_TABLE_NAME = "usuarios";
     public static final String usuario_col_1 = "idUsuario";
     public static final String usuario_col_2 = "contrasena";
+    public static final String usuario_col_3 = "username";
 
     public MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + usuario_TABLE_NAME +" (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,contrasena TEXT)");
+        db.execSQL("create table " + usuario_TABLE_NAME +" (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,contrasena TEXT, username TEXT)");
         db.execSQL("create table " + alumno_TABLE_NAME +" (idAlumno INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, telefono TEXT, idUsuario INTEGER, FOREIGN KEY(idUsuario) REFERENCES " + usuario_TABLE_NAME + "(idUsuario))");
         db.execSQL("create table " + horario_TABLE_NAME +" (idHorario INTEGER PRIMARY KEY AUTOINCREMENT,dias TEXT, horaInicio TEXT, horaFin TEXT)");
         db.execSQL("create table " + materia_TABLE_NAME +" (idMateria INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, requisito INTEGER)");
         db.execSQL("create table " + grupo_TABLE_NAME +" (idGrupo INTEGER PRIMARY KEY AUTOINCREMENT, idMateria INTEGER, idHorario INTEGER, cupo INTEGER, FOREIGN KEY(idMateria) REFERENCES " + materia_TABLE_NAME + "(idMateria), FOREIGN KEY(idHorario) REFERENCES " + horario_TABLE_NAME + "(idHorario))");
         db.execSQL("create table " + inscripcionAlumno_TABLE_NAME +" (idInscripcionAlumno INTEGER PRIMARY KEY AUTOINCREMENT,idAlumno INTEGER, idGrupo INTEGER, calificacion INTEGER, FOREIGN KEY(idAlumno) REFERENCES " + alumno_TABLE_NAME + "(idAlumno), FOREIGN KEY(idGrupo) REFERENCES " + grupo_TABLE_NAME + "(idGrupo))");
+        prechargingData(db);
     }
+
+    public void prechargingData(SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(usuario_col_3, "root");
+        contentValues.put(usuario_col_2, "root");
+        db.insert(usuario_TABLE_NAME, null, contentValues);
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -208,5 +219,19 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Integer deleteDataInscripcion(String idInscripcionAlumno){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(inscripcionAlumno_TABLE_NAME, "idInscripcionAlumno = ?", new String[] {idInscripcionAlumno});
+    }
+
+    //LOGIN
+    public boolean loginCheck(String username, String password){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String [] whereArgs = new String[2];
+        whereArgs[0] = username;
+        whereArgs[1] = password;
+        Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
+        if(cursor.getCount() == 1){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
