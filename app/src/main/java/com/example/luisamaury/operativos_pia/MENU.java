@@ -1,5 +1,6 @@
 package com.example.luisamaury.operativos_pia;
 
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,13 @@ public class MENU extends AppCompatActivity {
         mToogle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
         mDrawerlayout.addDrawerListener(mToogle);
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nv);
+
+        SharedPreferences appData = getApplicationContext().getSharedPreferences("appData", MODE_PRIVATE);
+        if(appData.getString("isAdmin", "").equals("false")){
+            nvDrawer.getMenu().findItem(R.id.Alumno).setVisible(false);
+            nvDrawer.getMenu().findItem(R.id.Usuario).setVisible(false);
+        }
+
         mToogle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(nvDrawer);

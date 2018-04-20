@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +47,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String usuario_col_1 = "idUsuario";
     public static final String usuario_col_2 = "contrasena";
     public static final String usuario_col_3 = "username";
+    public static final String usuario_col_4 = "isAdmin";
 
     public MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + usuario_TABLE_NAME +" (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,contrasena TEXT, username TEXT)");
+        db.execSQL("create table " + usuario_TABLE_NAME +" (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,contrasena TEXT, username TEXT, isAdmin TEXT)");
         db.execSQL("create table " + alumno_TABLE_NAME +" (idAlumno INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, telefono TEXT, idUsuario INTEGER, FOREIGN KEY(idUsuario) REFERENCES " + usuario_TABLE_NAME + "(idUsuario))");
         db.execSQL("create table " + horario_TABLE_NAME +" (idHorario INTEGER PRIMARY KEY AUTOINCREMENT,dias TEXT, horaInicio TEXT, horaFin TEXT)");
         db.execSQL("create table " + materia_TABLE_NAME +" (idMateria INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, requisito INTEGER)");
@@ -66,6 +66,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(usuario_col_3, "root");
         contentValues.put(usuario_col_2, "root");
+        contentValues.put(usuario_col_4, "true");
         db.insert(usuario_TABLE_NAME, null, contentValues);
     }
 
@@ -378,16 +379,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
 ///// END USERS /////
     //LOGIN
-    public boolean loginCheck(String username, String password){
+    public Cursor loginCheck(String username, String password){
         SQLiteDatabase db = this.getReadableDatabase();
         String [] whereArgs = new String[2];
         whereArgs[0] = username;
         whereArgs[1] = password;
         Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
-        if(cursor.getCount() == 1){
-            return true;
-        } else {
-            return false;
-        }
+        return cursor;
     }
 }
