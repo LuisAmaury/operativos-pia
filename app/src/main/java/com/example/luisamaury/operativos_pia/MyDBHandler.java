@@ -129,6 +129,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(alumno_TABLE_NAME, "idAlumno = ?",new String[] {id});
     }
+    public Cursor getStudentID(String username){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+alumno_TABLE_NAME+" WHERE nombre = ?; ", new String[] {username});
+
+        return res;
+    }
+
     // MATERIA
 
     public boolean insertDataMateria(String name, int requisito, int semestre) {
@@ -217,6 +225,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Cursor getAllDataInscripcion(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME, null);
+        return res;
+    }
+    public Cursor getStudentDataInscripcion(String idStudent){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?; ", new String[] {idStudent});
         return res;
     }
 
