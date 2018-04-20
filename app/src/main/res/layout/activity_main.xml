@@ -13,16 +13,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <Button
-            android:layout_width="wrap_content"
+            android:text="Operativos DEMO"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="inicio"
-            android:id="@+id/btnInicio"/>
+            android:orientation="vertical"
+            android:gravity="center">
+            <EditText
+                android:id="@+id/main_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Usuario"
+                android:layout_marginBottom="10dp"/>
+            <EditText
+                android:id="@+id/main_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Contraseña"
+                android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/main_btnEntrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
