@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class AddSubjectActivity extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editRequisito;            // campos de texto
+    EditText editName,editTextId, editRequisito,editSemester;            // campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
     Button btnDelete;
@@ -34,6 +34,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         editName = (EditText)findViewById(R.id.editText_nameMateria);
 
         editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
+        editSemester = (EditText) findViewById(R.id.editText_Semester);
 
         btnAddData = (Button)findViewById(R.id.btnAddNewSubject);
 
@@ -48,11 +49,15 @@ public class AddSubjectActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString()));
+                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString()), Integer.parseInt(editSemester.getText().toString()));
                         if(isInserted == true)
                             Toast.makeText(AddSubjectActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(AddSubjectActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                        editName.setText("");
+                        editRequisito.setText("");
+                        editSemester.setText("");
+
                     }
                 }
         );
