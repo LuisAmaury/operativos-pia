@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 String user = userEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 Cursor cursor = localDatabase.loginCheck(user, password);
-
                 if(cursor.getCount() == 1){
                     String c = "";
                     cursor.moveToFirst();

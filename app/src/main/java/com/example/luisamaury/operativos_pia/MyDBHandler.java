@@ -88,14 +88,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     // ALUMNO
-    public boolean insertDataAlumno(String name, String telefono, int idUsuario) {
+    public boolean insertDataAlumno(String name, String telefono, String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(alumno_col_2,name);
+        contentValues.put(alumno_col_2, name);
         contentValues.put(alumno_col_3, telefono);
-        contentValues.put(alumno_col_4, idUsuario);
-        long result = db.insert(alumno_TABLE_NAME,null ,contentValues);
-        if(result == -1)
+        long insertionAlumni = db.insert(alumno_TABLE_NAME,null ,contentValues);
+
+        contentValues.clear();
+        contentValues.put(usuario_col_3, username);
+        contentValues.put(usuario_col_2, "12");
+        contentValues.put(usuario_col_4, "false");
+        long insertionUser = db.insert(usuario_TABLE_NAME, null, contentValues);
+        db.close();
+
+        if((insertionAlumni + insertionUser) <= 0)
             return false;
         else
             return true;
