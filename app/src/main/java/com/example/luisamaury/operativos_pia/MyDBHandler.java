@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyDBHandler extends SQLiteOpenHelper {
     //information of database
     public static final int DATABASE_VERSION = 3;
@@ -221,6 +224,159 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return db.delete(inscripcionAlumno_TABLE_NAME, "idInscripcionAlumno = ?", new String[] {idInscripcionAlumno});
     }
 
+
+
+    public List<String> getAllSubjects(){
+        List<String> labels = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM "+  materia_TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return labels;
+    }
+    public Cursor getSubjectID(String subject){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+materia_TABLE_NAME+" WHERE nombre = ?; ", new String[] {subject});
+        //Cursor c = db.rawQuery("SELECT * FROM "+alumno_TABLE_NAME+" WHERE TRIM(nombre) = '"+subject.trim()+"'", null);
+        //Cursor res = db.rawQuery("select * from "+alumno_TABLE_NAME,null);
+
+
+        return res;
+    }
+
+    /////////////////////////////
+    //Requieres Implementation //
+    //////(//////////////////////
+    public List<String> getAllSchedules(){
+        List<String> hours = new ArrayList<String>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + horario_TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                hours.add(cursor.getString(1));
+
+                //all.add(cursor.getString(0));
+                //all.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return hours;
+    }
+    public Cursor getScheduleId(String hour){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+horario_TABLE_NAME+" WHERE dias = ?; ", new String[] {hour});
+        //Cursor c = db.rawQuery("SELECT * FROM "+alumno_TABLE_NAME+" WHERE TRIM(nombre) = '"+subject.trim()+"'", null);
+        //Cursor res = db.rawQuery("select * from "+alumno_TABLE_NAME,null);
+
+
+        return res;
+    }
+
+    public boolean saveNewGroup(String Subject, String Hour, String Cupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(grupo_col_2, Subject);
+        contentValues.put(grupo_col_3, Hour);
+        contentValues.put(grupo_col_4, Cupo);
+        long result = db.insert(grupo_TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean modifyGroup (String idGrupo, String Subject, String Hour, String Cupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(grupo_col_2,Subject);
+        contentValues.put(grupo_col_3,Hour);
+        contentValues.put(grupo_col_4,Cupo);
+        long result =db.update(grupo_TABLE_NAME, contentValues, "idGrupo = ?",new String[] { idGrupo});
+        if(result == -1)
+            return false;
+        else
+            return true;
+
+    }
+    /* ***************************************************** */
+    /* **   AGREGAR A DELETE/VIEW TABLA CORRESPONDIENTE   ** */
+    /* ***************************************************** */
+    public Cursor viewAllGroups(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+grupo_TABLE_NAME,null);
+        return res;
+    }
+    public Integer deleteGroup(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(grupo_TABLE_NAME, "idAlumno = ?",new String[] {id});
+    }
+
+    /////   USERS   //////
+    public Cursor viewAllUsers(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+usuario_TABLE_NAME,null);
+        return res;
+    }
+
+    /* ***************************************************** */
+    /* **  AGREGAR A DELETE/MODIFY CHEQUEO DE CONTRASEÑA  ** */
+    /* ***************************************************** */
+    public Integer deleteUser(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(usuario_TABLE_NAME, "idUsuario = ?",new String[] {id});
+    }
+    public boolean modifyUser (String idUsuario, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(usuario_col_2,password);
+        long result =db.update(usuario_TABLE_NAME, contentValues, "idUsuario = ?",new String[] { idUsuario});
+        if(result == -1)
+            return false;
+        else
+            return true;
+
+    }
+    public boolean addUser(String Password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(usuario_col_2, Password);
+        long result = db.insert(usuario_TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+///// END USERS /////
     //LOGIN
     public boolean loginCheck(String username, String password){
         SQLiteDatabase db = this.getReadableDatabase();
