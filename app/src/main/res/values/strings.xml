@@ -17,4 +17,16 @@
     <string name="title_activity_delete_student">DeleteStudentActivity</string>
     <string name="title_activity_modify_student">ModifyStudentActivity</string>
     <string name="title_activity_view_student">ViewStudentActivity</string>
+    <string name="title_activity_add_subject">AddSubjectActivity</string>
+    <string name="title_activity_delete_subject">DeleteSubjectActivity</string>
+    <string name="title_activity_modify_subject">ModifySubjectActivity</string>
+    <string name="title_activity_view_subject">ViewSubjectActivity</string>
+    <string name="title_activity_add_schedule">AddScheduleActivity</string>
+    <string name="title_activity_delete_schedule">DeleteScheduleActivity</string>
+    <string name="title_activity_modify_schedule">ModifyScheduleActivity</string>
+    <string name="title_activity_view_schedule">ViewScheduleActivity</string>
+    <string name="title_activity_add_inscription">AddInscriptionActivity</string>
+    <string name="title_activity_delete_inscription">DeleteInscriptionActivity</string>
+    <string name="title_activity_view_inscription">ViewInscriptionActivity</string>
+    <string name="title_activity_modify_inscription">ModifyInscriptionActivity</string>
 </resources>

@@ -125,6 +125,114 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.luisamaury.operativos_pia.MENU" />
         </activity>
+        <activity
+            android:name=".AddSubjectActivity"
+            android:label="@string/title_activity_add_subject"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".DeleteSubjectActivity"
+            android:label="@string/title_activity_delete_subject"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".ModifySubjectActivity"
+            android:label="@string/title_activity_modify_subject"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".ViewSubjectActivity"
+            android:label="@string/title_activity_view_subject"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".AddScheduleActivity"
+            android:label="@string/title_activity_add_schedule"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".DeleteScheduleActivity"
+            android:label="@string/title_activity_delete_schedule"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".ModifyScheduleActivity"
+            android:label="@string/title_activity_modify_schedule"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".ViewScheduleActivity"
+            android:label="@string/title_activity_view_schedule"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".AddInscriptionActivity"
+            android:label="@string/title_activity_add_inscription"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".DeleteInscriptionActivity"
+            android:label="@string/title_activity_delete_inscription"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".ViewInscriptionActivity"
+            android:label="@string/title_activity_view_inscription"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
+        <activity
+            android:name=".ModifyInscriptionActivity"
+            android:label="@string/title_activity_modify_inscription"
+            android:parentActivityName=".MENU"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.luisamaury.operativos_pia.MENU" />
+        </activity>
     </application>
 
 </manifest>
