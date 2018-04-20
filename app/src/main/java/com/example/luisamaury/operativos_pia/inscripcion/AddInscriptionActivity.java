@@ -63,7 +63,7 @@ public class AddInscriptionActivity extends AppCompatActivity {
         try {
             Cursor data = myDb.getInscripcionAlumno("2");//Falta poner el alumno que se este utilizando actualmente
             data.moveToFirst();
-            if(data.getCount() > 6){
+            if(data.getCount() >= 6){
                 val = false;
                 throw new Exception("Usted ya ha inscrito 6 materias.");
             }
