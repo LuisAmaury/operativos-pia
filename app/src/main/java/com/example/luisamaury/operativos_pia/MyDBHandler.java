@@ -31,6 +31,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String materia_col_1 = "idMateria";
     public static final String materia_col_2 = "nombre";
     public static final String materia_col_3 = "requisito";
+    public static final String materia_col_4 = "semestre";
 
     public static final String grupo_TABLE_NAME = "grupo";
     public static final String grupo_col_1 = "idGrupo";
@@ -56,7 +57,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.execSQL("create table " + usuario_TABLE_NAME +" (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,contrasena TEXT, username TEXT)");
         db.execSQL("create table " + alumno_TABLE_NAME +" (idAlumno INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, telefono TEXT, idUsuario INTEGER, FOREIGN KEY(idUsuario) REFERENCES " + usuario_TABLE_NAME + "(idUsuario))");
         db.execSQL("create table " + horario_TABLE_NAME +" (idHorario INTEGER PRIMARY KEY AUTOINCREMENT,dias TEXT, horaInicio TEXT, horaFin TEXT)");
-        db.execSQL("create table " + materia_TABLE_NAME +" (idMateria INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, requisito INTEGER)");
+        db.execSQL("create table " + materia_TABLE_NAME +" (idMateria INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT, requisito INTEGER, semestre INTEGER)");
         db.execSQL("create table " + grupo_TABLE_NAME +" (idGrupo INTEGER PRIMARY KEY AUTOINCREMENT, idMateria INTEGER, idHorario INTEGER, cupo INTEGER, FOREIGN KEY(idMateria) REFERENCES " + materia_TABLE_NAME + "(idMateria), FOREIGN KEY(idHorario) REFERENCES " + horario_TABLE_NAME + "(idHorario))");
         db.execSQL("create table " + inscripcionAlumno_TABLE_NAME +" (idInscripcionAlumno INTEGER PRIMARY KEY AUTOINCREMENT,idAlumno INTEGER, idGrupo INTEGER, calificacion INTEGER, FOREIGN KEY(idAlumno) REFERENCES " + alumno_TABLE_NAME + "(idAlumno), FOREIGN KEY(idGrupo) REFERENCES " + grupo_TABLE_NAME + "(idGrupo))");
         prechargingData(db);
@@ -122,11 +123,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
     // MATERIA
 
-    public boolean insertDataMateria(String name, int requisito) {
+    public boolean insertDataMateria(String name, int requisito, int semestre) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(materia_col_2, name);
         contentValues.put(materia_col_3, requisito);
+        contentValues.put(materia_col_4, semestre);
         long result = db.insert(materia_TABLE_NAME, null, contentValues);
         if(result == -1)
             return false;
@@ -140,12 +142,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateDataMateria(String id,String name, int requisito) {
+    public boolean updateDataMateria(String id,String name, int requisito, int semestre) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(materia_col_1,id);
         contentValues.put(materia_col_2,name);
         contentValues.put(materia_col_3, requisito);
+        contentValues.put(materia_col_4, semestre);
         db.update(materia_TABLE_NAME, contentValues, "idMateria = ?",new String[] { id });
         return true;
     }

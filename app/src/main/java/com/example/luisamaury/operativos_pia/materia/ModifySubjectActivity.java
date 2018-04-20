@@ -15,7 +15,7 @@ import com.example.luisamaury.operativos_pia.R;
 public class ModifySubjectActivity extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editRequisito;            // campos de texto
+    EditText editName,editTextId, editRequisito, editSemestre;            // campos de texto
 
 
     Button btnviewUpdate;
@@ -33,7 +33,7 @@ public class ModifySubjectActivity extends AppCompatActivity {
         editName = (EditText)findViewById(R.id.editText_nameMateria);
         editTextId = (EditText)findViewById(R.id.editText_idMateria);
         editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
-
+        editSemestre = (EditText) findViewById(R.id.editText_semestreMateria);
 
         btnviewUpdate= (Button)findViewById(R.id.btnModifyNewSubject);
 
@@ -50,7 +50,8 @@ public class ModifySubjectActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         boolean isUpdate = myDb.updateDataMateria(editTextId.getText().toString(),
-                                editName.getText().toString(), Integer.parseInt(editRequisito.getText().toString()));
+                                editName.getText().toString(), Integer.parseInt(editRequisito.getText().toString())
+                                ,Integer.parseInt(editSemestre.getText().toString()));
                         if(isUpdate == true)
                             Toast.makeText(ModifySubjectActivity.this,"Data Update",Toast.LENGTH_LONG).show();
                         else

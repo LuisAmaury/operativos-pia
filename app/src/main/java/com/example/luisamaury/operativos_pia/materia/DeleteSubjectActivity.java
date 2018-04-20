@@ -33,8 +33,6 @@ public class DeleteSubjectActivity extends AppCompatActivity {
 
         editName = (EditText)findViewById(R.id.editText_nameMateria);
         editTextId = (EditText)findViewById(R.id.editText_idMateria);
-
-
         btnDelete= (Button)findViewById(R.id.btnDeleteNewSubject);
 
         DeleteData();

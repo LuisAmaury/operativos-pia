@@ -15,7 +15,7 @@ import com.example.luisamaury.operativos_pia.R;
 public class AddSubjectActivity extends AppCompatActivity {
 
     MyDBHandler myDb;                           // Base de datos
-    EditText editName,editTextId, editRequisito;            // campos de texto
+    EditText editName,editTextId, editRequisito, editSemestre;            // campos de texto
     Button btnAddData;                         // Botones
     Button btnviewAll;
     Button btnDelete;
@@ -36,6 +36,8 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         editRequisito = (EditText) findViewById(R.id.editText_requisitoMateria);
 
+        editSemestre = (EditText) findViewById(R.id.editText_semestreMateria);
+
         btnAddData = (Button)findViewById(R.id.btnAddNewSubject);
 
         AddData();
@@ -49,7 +51,8 @@ public class AddSubjectActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString()));
+                        boolean isInserted = myDb.insertDataMateria(editName.getText().toString(),Integer.parseInt(editRequisito.getText().toString())
+                                , Integer.parseInt(editSemestre.getText().toString()));
                         if(isInserted == true)
                             Toast.makeText(AddSubjectActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else

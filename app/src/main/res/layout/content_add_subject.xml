@@ -35,6 +35,20 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_nameMateria"
         tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/editText_semestreMateria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Semestre"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_nameMateria"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/btnAddNewSubject"
         android:layout_width="388dp"
