@@ -364,7 +364,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
     public Integer deleteGroup(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(grupo_TABLE_NAME, "idAlumno = ?",new String[] {id});
+        return db.delete(grupo_TABLE_NAME, "idGrupo = ?",new String[] {id});
     }
 
     /////   USERS   //////
