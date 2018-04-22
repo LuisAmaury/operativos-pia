@@ -36,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
                 if(cursor.getCount() == 1){
                     String c = "";
                     cursor.moveToFirst();
+
                     editor.putString("username", cursor.getString(cursor.getColumnIndex("username")));
                     editor.putString("isAdmin", cursor.getString(cursor.getColumnIndex("isAdmin")));
                     editor.putString("idUsuario", cursor.getString(cursor.getColumnIndex("idUsuario")));
+                    editor.putString("idAlumno", cursor.getString(cursor.getColumnIndex("idAlumno")));
 
                     editor.commit();
                     cursor.close();
@@ -46,6 +48,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

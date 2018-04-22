@@ -413,7 +413,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String [] whereArgs = new String[2];
         whereArgs[0] = username;
         whereArgs[1] = password;
-        Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT u.idUsuario, u.username, u.isAdmin, a.idAlumno FROM usuarios u LEFT JOIN Alumno a ON u.idUsuario = a.idUsuario WHERE username = ? AND contrasena = ?", whereArgs);
         return cursor;
     }
 }
