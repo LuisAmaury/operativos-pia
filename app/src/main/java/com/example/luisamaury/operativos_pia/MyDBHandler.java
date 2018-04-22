@@ -131,6 +131,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(alumno_TABLE_NAME, "idAlumno = ?",new String[] {id});
     }
+    public Cursor getStudentID(String username){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+alumno_TABLE_NAME+" WHERE nombre = ?; ", new String[] {username});
+
+        return res;
+    }
+
     // MATERIA
 
     public boolean insertDataMateria(String name, int requisito, int semestre) {
@@ -219,6 +227,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Cursor getAllDataInscripcion(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME, null);
+        return res;
+    }
+    public Cursor getStudentDataInscripcion(String idStudent){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?; ", new String[] {idStudent});
         return res;
     }
 
@@ -399,7 +413,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String [] whereArgs = new String[2];
         whereArgs[0] = username;
         whereArgs[1] = password;
-        Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT u.idUsuario, u.username, u.isAdmin, a.idAlumno FROM usuarios u LEFT JOIN Alumno a ON u.idUsuario = a.idUsuario WHERE username = ? AND contrasena = ?", whereArgs);
         return cursor;
     }
 }

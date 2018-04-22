@@ -1,6 +1,8 @@
 package com.example.luisamaury.operativos_pia.materia;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -36,6 +38,14 @@ public class I_MATERIA extends Fragment {
         btnModifySubject = (Button) viewer.findViewById(R.id.btnModifySubject);
         btnViewSubject = (Button) viewer.findViewById(R.id.btnViewSubject);
         btnDeleteSubject = (Button) viewer.findViewById(R.id.btnDeleteSubject);
+
+        SharedPreferences appData = getActivity().getApplicationContext().getSharedPreferences("appData", Context.MODE_PRIVATE);
+        if(appData.getString("isAdmin", "").equals("false")){
+            viewer.findViewById(R.id.btnAddSubject).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnModifySubject).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnDeleteSubject).setVisibility(View.GONE);
+        }
+
         openAddSubject();
         openModifySubject();
         openViewSubject();
