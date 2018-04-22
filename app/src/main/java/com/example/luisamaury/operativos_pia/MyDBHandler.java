@@ -402,4 +402,37 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
         return cursor;
     }
+
+    public Cursor viewGrupos(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT grupo.idGrupo, Materia.nombre, horario.dias, horario.horaInicio, horario.horaFin  FROM "+ grupo_TABLE_NAME +
+                " LEFT JOIN " + materia_TABLE_NAME +
+                "  ON grupo.idMateria = Materia.idMateria"+
+                " LEFT JOIN " + horario_TABLE_NAME +
+                " ON grupo.idHorario = horario.idHorario";
+        try {
+            Cursor res = db.rawQuery(query,null);
+            return res;
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerRequisito(String Grupo){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Materia.idMateria, Materia.requisito FROM grupo INNER JOIN Materia on grupo.idMateria = Materia.idMateria WHERE grupo.idGrupo = " + Grupo ;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+   /* public Object getDataMateria(String idGrupo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select Materia.idMateria, Materia.requisito, Materia.nombre, Materia.semestre from grupo left join Materia ON grupo.idMateria = Materia.idMateria", null );
+        while(res.moveToNext()){
+            return new Object[]{3,4};
+        }
+    }*/
 }
