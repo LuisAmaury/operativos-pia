@@ -52,6 +52,9 @@ public class AddStudentActivity extends AppCompatActivity {
                         SharedPreferences appData = getApplicationContext().getSharedPreferences("appData", MODE_PRIVATE);
                         SharedPreferences.Editor editor = appData.edit();
                         if (sessionids[0] != -1 && sessionids[1] != -1) {
+                            editor.putLong("idUser", sessionids[0]);
+                            editor.putLong("idAlumno", sessionids[1]);
+                            editor.commit();
                             Toast.makeText(AddStudentActivity.this, "Informacion Ingresada", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(AddStudentActivity.this, "Informacion no Ingresada", Toast.LENGTH_LONG).show();

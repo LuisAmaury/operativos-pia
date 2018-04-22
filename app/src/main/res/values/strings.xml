@@ -29,5 +29,4 @@
     <string name="title_activity_delete_inscription">DeleteInscriptionActivity</string>
     <string name="title_activity_view_inscription">ViewInscriptionActivity</string>
     <string name="title_activity_modify_inscription">ModifyInscriptionActivity</string>
-    <string name="title_activity_view_schedule_student">ViewScheduleStudentActivity</string>
 </resources>
