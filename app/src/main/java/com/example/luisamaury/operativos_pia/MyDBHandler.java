@@ -452,4 +452,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor obtenerAlumnosInscritos(String idGrupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+inscripcionAlumno_TABLE_NAME+" WHERE idGrupo = ?;",new String[] {idGrupo});
+        return res;
+    }
+
 }

@@ -179,11 +179,13 @@ public class Materia extends Fragment {
     private boolean validaCupo(){
         Cursor data = myDb.obtenerCupo(_idGrupo);
         data.moveToFirst();
+        Cursor data2 = myDb.obtenerAlumnosInscritos(_idGrupo);
+        data2.moveToFirst();
         int cupo = Integer.parseInt(data.getString(data.getColumnIndex("cupo")));
-        String cupo1 = data.getString(data.getColumnIndex("cupo"));
-        String cupo2 = String.valueOf(data.getCount());
-        showMessage("Informacion: ", cupo2);
-        if(data.getCount() >= cupo){
+//        String cupo1 = data.getString(data.getColumnIndex("cupo"));
+//        String cupo2 = String.valueOf(data.getCount());
+        
+        if(data2.getCount() >= cupo){
             return true;
         }else
             return false;
