@@ -15,6 +15,7 @@ import com.example.luisamaury.operativos_pia.alumno.I_ALUMNO;
 import com.example.luisamaury.operativos_pia.horario.I_HORARIO;
 import com.example.luisamaury.operativos_pia.inscripcion.I_INSCRIPCION;
 import com.example.luisamaury.operativos_pia.grupo.I_GRUPO;
+import com.example.luisamaury.operativos_pia.inscripcion.inscripcion_materia.Materia;
 import com.example.luisamaury.operativos_pia.materia.I_MATERIA;
 
 public class MENU extends AppCompatActivity {
@@ -51,6 +52,9 @@ public class MENU extends AppCompatActivity {
                 break;
             case R.id.Inscripcion:
                 fragmentClass = I_INSCRIPCION.class;
+                break;
+            case R.id.InscripcionAlumno:
+                fragmentClass = Materia.class;
                 break;
             case R.id.Alumno:
                 fragmentClass = I_ALUMNO.class;
