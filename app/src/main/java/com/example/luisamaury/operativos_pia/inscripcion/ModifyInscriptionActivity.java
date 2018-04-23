@@ -31,7 +31,7 @@ public class ModifyInscriptionActivity extends AppCompatActivity {
         idAlumno = (EditText)findViewById(R.id.editText_idAlumno);
         idGrupo = (EditText)findViewById(R.id.editText_idGrupo);
         calificacion = (EditText)findViewById(R.id.editText_calificacion);
-
+        myDb = new MyDBHandler(this);
         btnviewUpdate= (Button)findViewById(R.id.btnModifyInscription);
 
         UpdateData();
@@ -41,8 +41,12 @@ public class ModifyInscriptionActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isUpdate = myDb.updateDataInscripcion(id.getText().toString(),
-                                idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
+                        String idInscripcion = id.getText().toString();
+                        String idAlumnoString = idAlumno.getText().toString();
+                        String idGrupoString = idGrupo.getText().toString();
+                        String calificacionString = calificacion.getText().toString();
+                        boolean isUpdate = myDb.updateDataInscripcion(idInscripcion, idAlumnoString, idGrupoString, calificacionString);
+
                         if(isUpdate == true)
                             Toast.makeText(ModifyInscriptionActivity.this,"Data Update",Toast.LENGTH_LONG).show();
                         else

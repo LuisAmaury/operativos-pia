@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.luisamaury.operativos_pia.MyDBHandler;
 import com.example.luisamaury.operativos_pia.R;
+import com.example.luisamaury.operativos_pia.horario.DeleteScheduleActivity;
 
 public class DeleteSubjectActivity extends AppCompatActivity {
     MyDBHandler myDb;                           // Base de datos
@@ -20,6 +21,7 @@ public class DeleteSubjectActivity extends AppCompatActivity {
     Button btnDelete;
 
     Button btnviewUpdate;
+    boolean valido;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -43,26 +45,22 @@ public class DeleteSubjectActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Integer deletedRows = myDb.deleteDataMateria(editTextId.getText().toString());
-                        if(deletedRows > 0)
-                            Toast.makeText(DeleteSubjectActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(DeleteSubjectActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
-                        editName.setText("");
+                        valido = myDb.checkMateriaGrupo(editTextId.getText().toString());
+                        if (valido) {
+                            Integer deletedRows = myDb.deleteDataMateria(editTextId.getText().toString());
+                            if (deletedRows > 0)
+                                Toast.makeText(DeleteSubjectActivity.this, "Data Deleted", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(DeleteSubjectActivity.this, "Data not Deleted", Toast.LENGTH_LONG).show();
 
-
-                        editTextId.setText("");
+                            editName.setText("");
+                            editTextId.setText("");
+                        }else{
+                            Toast.makeText(DeleteSubjectActivity.this, "Cannot Delete, it is assigned to a group", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
         );
     }
 
-
-    public void showMessage(String title,String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
 }

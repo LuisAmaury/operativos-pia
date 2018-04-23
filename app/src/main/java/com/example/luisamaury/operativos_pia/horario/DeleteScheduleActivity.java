@@ -17,6 +17,7 @@ public class DeleteScheduleActivity extends AppCompatActivity {
     Button btnAddData;                         // Botones
     Button btnviewAll;
     Button btnDelete;
+    boolean valido;
 
     Button btnviewUpdate;
     @Override
@@ -44,11 +45,17 @@ public class DeleteScheduleActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Integer deletedRows = myDb.deleteDataHorario(editTextId.getText().toString());
-                        if(deletedRows > 0)
-                            Toast.makeText(DeleteScheduleActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(DeleteScheduleActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
+                        valido = myDb.checkHorarioGrupo(editTextId.getText().toString());
+                        if (valido) {
+                            Integer deletedRows = myDb.deleteDataHorario(editTextId.getText().toString());
+                            if (deletedRows > 0) {
+                                Toast.makeText(DeleteScheduleActivity.this, "Data Deleted", Toast.LENGTH_LONG).show();
+                            }else
+                                Toast.makeText(DeleteScheduleActivity.this, "Data not Deleted", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(DeleteScheduleActivity.this, "Cannot Delete, it is assigned to a group", Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 }
         );

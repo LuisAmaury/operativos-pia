@@ -22,7 +22,9 @@ import java.util.ArrayList;
 
 public class ViewScheduleStudentActivity extends AppCompatActivity {
     MyDBHandler myDb;
-    String idAlumno, UserName;
+    String idAlumno, UserName, nomSubject, horaInicio, horaFin;
+    String idGrupo;
+    Cursor nomMateria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,8 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listViewer);
         ArrayList<String> theList = new ArrayList <>();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String unity ;
+        String unity;
+
         Integer counter=0;
         myDb = new MyDBHandler(this);
 
@@ -52,13 +55,23 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
 
         Cursor data = myDb.getStudentDataInscripcion(idAlumno);
 
+
         if(data.getCount() == 0){
             Toast.makeText(ViewScheduleStudentActivity.this,"No Existen Datos :(",Toast.LENGTH_SHORT).show();
         }else{
             while(data.moveToNext()){
                 unity = "";
                 counter++;
-                unity = unity + counter+"\nID Grupo: "+data.getString(2)+"\nCalificacion: "+data.getString(3);
+                idGrupo =data.getString(2);
+                Cursor idMateria = myDb.getIDMateriaGrupo(idGrupo);
+                while(idMateria.moveToNext()){
+                    nomMateria = myDb.getNameMateria( idMateria.getString(0));
+                };
+                while(nomMateria.moveToNext()){
+                    nomSubject = nomMateria.getString(0);
+                };
+
+                unity = unity + counter+"\nID Grupo: "+data.getString(2)+"\nMateria: "+nomSubject+"\nCalificacion: "+data.getString(3);
                 theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);

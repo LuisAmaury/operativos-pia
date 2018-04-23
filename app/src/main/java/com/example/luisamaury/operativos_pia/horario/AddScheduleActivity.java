@@ -48,6 +48,9 @@ public class AddScheduleActivity extends AppCompatActivity {
                             Toast.makeText(AddScheduleActivity.this,"Data Inserted",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(AddScheduleActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+                        editDias.setText("");
+                        editInicio.setText("");
+                        editFin.setText("");
                     }
                 }
         );
