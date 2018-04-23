@@ -61,17 +61,7 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
         }else{
             while(data.moveToNext()){
                 unity = "";
-                counter++;
-                idGrupo =data.getString(2);
-                Cursor idMateria = myDb.getIDMateriaGrupo(idGrupo);
-                while(idMateria.moveToNext()){
-                    nomMateria = myDb.getNameMateria( idMateria.getString(0));
-                };
-                while(nomMateria.moveToNext()){
-                    nomSubject = nomMateria.getString(0);
-                };
-
-                unity = unity + counter+"\nID Grupo: "+data.getString(2)+"\nMateria: "+nomSubject+"\nCalificacion: "+data.getString(3);
+                unity = unity +"\nID Grupo: "+data.getString(2)+"\nMateria: "+data.getString(7)+"\nDias: "+data.getString(4)+" Hora Inicio: "+data.getString(5)+" Hora Fin: "+data.getString(6);
                 theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);

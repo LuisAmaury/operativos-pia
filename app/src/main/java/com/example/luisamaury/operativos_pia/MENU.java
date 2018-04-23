@@ -37,6 +37,9 @@ public class MENU extends AppCompatActivity {
             Admin ="NO";
             nvDrawer.getMenu().findItem(R.id.Alumno).setVisible(false);
             nvDrawer.getMenu().findItem(R.id.Usuario).setVisible(false);
+            nvDrawer.getMenu().findItem(R.id.Inscripcion).setVisible(false);
+        } else {
+            nvDrawer.getMenu().findItem(R.id.InscripcionAlumno).setVisible(false);
         }
 
         mToogle.syncState();
