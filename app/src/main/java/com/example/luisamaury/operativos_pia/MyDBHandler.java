@@ -538,4 +538,19 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery(query,null);
         return res;
     }
+
+    public Cursor getStudentID(String username){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+alumno_TABLE_NAME+" WHERE nombre = ?; ", new String[] {username});
+
+        return res;
+    }
+
+    public Cursor getStudentDataInscripcion(String idStudent){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?; ", new String[] {idStudent});
+        return res;
+    }
 }
