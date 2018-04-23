@@ -84,15 +84,7 @@ public class Materia extends Fragment {
                 String aux = theList.get(position);
                 parts = aux.split("\\s+");
                 _idGrupo = parts[1];
-
-
-//                if(ValidaMateriaRequisito()){
-//
-//                    if(ValidaCalificacion()){
-//                    }else {
-//                        Toast.makeText(getActivity(), "No puede llevar la materia", Toast.LENGTH_SHORT).show();
-//                    }
-//                }else{
+                
                     AgregaMateria();
 
             }
