@@ -23,6 +23,8 @@ import com.example.luisamaury.operativos_pia.R;
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
+import android.support.v7.app.AlertDialog;
+
 
 public class Materia extends Fragment {
     MyDBHandler myDb;
@@ -83,33 +85,76 @@ public class Materia extends Fragment {
                 parts = aux.split("\\s+");
                 _idGrupo = parts[1];
 
-                if(ValidaMateriaRequisito()){
+                AgregaMateria();
 
-                    if(ValidaCalificacion()){
-                        AgregaMateria();
-                    }else {
-                        Toast.makeText(getActivity(), "No puede llevar la materia", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    AgregaMateria();
-                }
             }
         });
         return view;
     }
 
-   private void AgregaMateria() {
-        if (ValidarHorarios()){
-            Toast.makeText(getActivity(), "Horarios iguales", Toast.LENGTH_SHORT).show();
-        }else {
+    private void AgregaMateria() {
+        if (validate()){
             String calf = "0";
             boolean isInserted = myDb.insertInscripcion(_idAlumno,String.valueOf(_idGrupo), calf);
             if(isInserted == true)
-                Toast.makeText(getActivity(),"Data Inserted",Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(getActivity(),"Data not Inserted",Toast.LENGTH_LONG).show();
-        }
+                Toast.makeText(getActivity(),"Materia Inscrita",Toast.LENGTH_LONG).show();
+        }else
+            Toast.makeText(getActivity(),"Materia no Inscrita",Toast.LENGTH_LONG).show();
+    }
 
+    private boolean validate(){
+        boolean val = true;
+        try {
+            if(ValidaMateriaRequisito()){
+                val=false;
+                throw new Exception("Usted no ha aprobado la materia requisito");
+            }
+            if(ValidaCalificacion()){
+                val=false;
+                throw new Exception("Usted no ha pasado la materia");
+            }
+            if(ValidarHorarios()){
+                val=false;
+                throw new Exception("Horarios Iguales");
+            }
+            if(validaMaxMaterias()){
+                val=false;
+                throw new Exception("Usted ya ha inscrito 6 materias.");
+            }
+            if(validaCupo()){
+                val=false;
+                throw new Exception("Cupo lleno.");
+            }
+
+        }catch(Exception e){
+            showMessage("Error info", e.getMessage());
+        }
+        return val;
+    }
+
+    private boolean validaMaxMaterias(){
+        Cursor data = myDb.getInscripcionAlumno(_idAlumno);
+        data.moveToFirst();
+        if(data.getCount() >= 6){
+            return true;
+        }else
+            return false;
+
+    }
+
+    private boolean validaCupo(){
+        Cursor data = myDb.obtenerCupo(_idGrupo);
+        data.moveToFirst();
+        Cursor data2 = myDb.obtenerAlumnosInscritos(_idGrupo);
+        data2.moveToFirst();
+        int cupo = Integer.parseInt(data.getString(data.getColumnIndex("cupo")));
+//        String cupo1 = data.getString(data.getColumnIndex("cupo"));
+//        String cupo2 = String.valueOf(data.getCount());
+
+        if(data2.getCount() >= cupo){
+            return true;
+        }else
+            return false;
     }
 
     private boolean ValidarHorarios() {
@@ -132,10 +177,11 @@ public class Materia extends Fragment {
             calif = calificacion.getString(calificacion.getColumnIndex("calificacion"));
         }
         int c = Integer.valueOf(calif);
+        showMessage("Calificacion",calif);
         if(c >= 70){
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
     }
 
@@ -153,6 +199,12 @@ public class Materia extends Fragment {
             return true;
         }
     }
-
+    public void showMessage(String title,String Message) {
+        android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
 
 }

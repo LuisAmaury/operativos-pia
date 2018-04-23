@@ -47,12 +47,8 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
             UserName = appData.getString("username","");
             
         }
-        Cursor aid = myDb.getStudentID(UserName);
 
-        while (aid.moveToNext()) { // puesto a que comienza en -1, debemos de pasarlo al siguiente, y se supone que solo debe tener 1 valor
-            idAlumno = aid.getString(0);
-        }
-
+        idAlumno = appData.getString("idAlumno", "");
         Cursor data = myDb.getStudentDataInscripcion(idAlumno);
 
 
