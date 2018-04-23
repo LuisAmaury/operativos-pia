@@ -187,6 +187,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return valido;
     }
+    public Cursor getNameMateria(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select nombre from "+materia_TABLE_NAME+ " WHERE idMateria = ? ",new String[] {id});
+        return res;
+    }
+    public Cursor getIDMateriaGrupo(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select idMateria from "+grupo_TABLE_NAME+ " WHERE idGrupo = ? ",new String[] {id});
+        return res;
+    }
     //HORARIO
     public boolean insertHorario(String dias, String horaInicio, String horaFin){
         SQLiteDatabase db = this.getWritableDatabase();
