@@ -2,7 +2,6 @@ package com.example.luisamaury.operativos_pia.inscripcion;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -46,11 +45,11 @@ public class AddInscriptionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if(validate()) {
-                            boolean isInserted = myDb.insertInscripcion(idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
-                            if (isInserted == true)
+
+                        boolean isInserted = myDb.insertInscripcion(idAlumno.getText().toString(), idGrupo.getText().toString(), calificacion.getText().toString());
+                        if (isInserted == true)
                                 Toast.makeText(AddInscriptionActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                        }else
+                        else
                             Toast.makeText(AddInscriptionActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
 
                     }
@@ -58,27 +57,5 @@ public class AddInscriptionActivity extends AppCompatActivity {
         );
     }
 
-    public boolean validate(){
-        boolean val = true;
-        try {
-            Cursor data = myDb.getInscripcionAlumno("2");//Falta poner el alumno que se este utilizando actualmente
-            data.moveToFirst();
-            if(data.getCount() >= 6){
-                val = false;
-                throw new Exception("Usted ya ha inscrito 6 materias.");
-            }
 
-        }catch(Exception e){
-            showMessage("Error info", e.getMessage());
-        }
-    return val;
-    }
-
-    public void showMessage(String title,String Message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
 }

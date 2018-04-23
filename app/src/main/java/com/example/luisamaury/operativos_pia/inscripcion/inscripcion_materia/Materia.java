@@ -23,6 +23,8 @@ import com.example.luisamaury.operativos_pia.R;
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
+import android.support.v7.app.AlertDialog;
+
 
 public class Materia extends Fragment {
     MyDBHandler myDb;
@@ -83,33 +85,55 @@ public class Materia extends Fragment {
                 parts = aux.split("\\s+");
                 _idGrupo = parts[1];
 
-                if(ValidaMateriaRequisito()){
 
-                    if(ValidaCalificacion()){
-                        AgregaMateria();
-                    }else {
-                        Toast.makeText(getActivity(), "No puede llevar la materia", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
+//                if(ValidaMateriaRequisito()){
+//
+//                    if(ValidaCalificacion()){
+//                    }else {
+//                        Toast.makeText(getActivity(), "No puede llevar la materia", Toast.LENGTH_SHORT).show();
+//                    }
+//                }else{
                     AgregaMateria();
-                }
+
             }
         });
         return view;
     }
 
    private void AgregaMateria() {
-        if (ValidarHorarios()){
-            Toast.makeText(getActivity(), "Horarios iguales", Toast.LENGTH_SHORT).show();
-        }else {
+        if (validate()){
             String calf = "0";
             boolean isInserted = myDb.insertInscripcion(_idAlumno,String.valueOf(_idGrupo), calf);
             if(isInserted == true)
-                Toast.makeText(getActivity(),"Data Inserted",Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(getActivity(),"Data not Inserted",Toast.LENGTH_LONG).show();
-        }
+                Toast.makeText(getActivity(),"Materia Inscrita",Toast.LENGTH_LONG).show();
+            }else
+                Toast.makeText(getActivity(),"Materia no Inscrita",Toast.LENGTH_LONG).show();
+   }
 
+   private boolean validate(){
+        boolean val = true;
+        try {
+            if(ValidaMateriaRequisito()){
+                val=false;
+                throw new Exception("Valida Materia Requisito");
+                }
+            if(ValidaCalificacion()){
+                val=false;
+                throw new Exception("Valida Calificacion");
+                }
+            if(ValidarHorarios()){
+                val=false;
+                throw new Exception("Valida Horarios");
+                }
+            if(validaMaxMaterias()){
+                val=false;
+                throw new Exception("Usted ya ha inscrito 6 materias.");
+                }
+
+        }catch(Exception e){
+            showMessage("Error info", e.getMessage());
+        }
+    return val;
     }
 
     private boolean ValidarHorarios() {
@@ -146,5 +170,24 @@ public class Materia extends Fragment {
         }
     }
 
+    private boolean validaMaxMaterias(){
+        Cursor data = myDb.getInscripcionAlumno(_idAlumno);
+            data.moveToFirst();
+            if(data.getCount() >= 6){
+                return true;
+            }else
+                return false;
+
+    }
+
+
+
+    public void showMessage(String title,String Message) {
+        android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
 
 }
