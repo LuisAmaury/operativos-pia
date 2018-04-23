@@ -51,6 +51,9 @@ public class MENU extends AppCompatActivity {
                 fragmentClass = I_HORARIO.class;
                 break;
             case R.id.Inscripcion:
+                fragmentClass = I_INSCRIPCION.class;
+                break;
+            case R.id.InscripcionAlumno:
                 fragmentClass = Materia.class;
                 break;
             case R.id.Alumno:
