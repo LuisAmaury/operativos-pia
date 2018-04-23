@@ -127,6 +127,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+
+
     public Integer deleteDataAlumno(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(alumno_TABLE_NAME, "idAlumno = ?",new String[] {id});
@@ -175,6 +177,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(materia_TABLE_NAME, "idMateria = ?",new String[] {id});
     }
+    public boolean checkMateriaGrupo(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idMateria FROM "+grupo_TABLE_NAME+" WHERE idMateria = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
+    }
     //HORARIO
     public boolean insertHorario(String dias, String horaInicio, String horaFin){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -209,6 +221,17 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(horario_TABLE_NAME, "idHorario = ?", new String[] {id});
     }
+    public boolean checkHorarioGrupo(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idHorario FROM "+grupo_TABLE_NAME+" WHERE idHorario = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
+    }
+
 
     //INSCRIPCION
     public boolean insertInscripcion(String idAlumno, String idGrupo, String calificacion){
@@ -256,6 +279,27 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Integer deleteDataInscripcion(String idInscripcionAlumno){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(inscripcionAlumno_TABLE_NAME, "idInscripcionAlumno = ?", new String[] {idInscripcionAlumno});
+    }
+    public boolean checkGrupoInscripcion(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idGrupo FROM "+inscripcionAlumno_TABLE_NAME+" WHERE idGrupo = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
+    }
+    public boolean checkAlumnoInscripcion(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
     }
 
 
@@ -347,6 +391,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return true;
     }
 
+
+
+
     public boolean modifyGroup (String idGrupo, String Subject, String Hour, String Cupo){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -388,6 +435,17 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Integer deleteUser(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(usuario_TABLE_NAME, "idUsuario = ?",new String[] {id});
+    }
+
+    public boolean checkUserStudent(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idUsuario FROM "+alumno_TABLE_NAME+" WHERE idUsuario = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
     }
     public boolean modifyUser (String idUsuario, String password, String UserName){
         SQLiteDatabase db = this.getWritableDatabase();
