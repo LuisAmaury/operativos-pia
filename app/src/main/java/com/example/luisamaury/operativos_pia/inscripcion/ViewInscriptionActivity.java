@@ -31,14 +31,14 @@ public class ViewInscriptionActivity extends AppCompatActivity {
         String unity ;
         myDb = new MyDBHandler(this);
 
-        Cursor data = myDb.getAllDataInscripcion();
+        Cursor data = myDb.getAllDataInscripcionNamed();
 
         if(data.getCount() == 0){
             Toast.makeText(ViewInscriptionActivity.this,"No Existen Datos :(",Toast.LENGTH_SHORT).show();
         }else{
             while(data.moveToNext()){
                 unity = "";
-                unity = unity + data.getString(0)+".- ID Alumno: "+data.getString(1)+"\nID Grupo: "+data.getString(2)+"\nCalificacion: "+data.getString(3);
+                unity = unity + "ID Inscripcion: " + data.getString(0)+"\nID Alumno: "+data.getString(1)+" Alumno: "+data.getString(4)+"\nID Grupo: "+data.getString(2)+" Materia: "+data.getString(5)+"\nCalificacion: "+data.getString(3);
                 theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);

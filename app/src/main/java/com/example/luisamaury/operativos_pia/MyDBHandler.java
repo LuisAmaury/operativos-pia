@@ -229,6 +229,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME, null);
         return res;
     }
+
+    public Cursor getAllDataInscripcionNamed(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT i.idInscripcionAlumno, i.idAlumno, i.idGrupo, i.calificacion, a.nombre, m.nombre FROM InscripcionAlumno i LEFT JOIN Alumno a ON i.idAlumno = a.idAlumno LEFT JOIN grupo g ON i.idGrupo = g.idGrupo LEFT JOIN Materia m ON g.idMateria = m.idMateria", null);
+        return cursor;
+    }
+
     public Cursor getStudentDataInscripcion(String idStudent){
         SQLiteDatabase db = this.getWritableDatabase();
 
