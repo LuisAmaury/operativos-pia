@@ -439,5 +439,20 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery(query,null);
         return res;
     }
+    public Cursor ObtenerHorario(String Grupo){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT grupo.idHorario FROM grupo WHERE grupo.idGrupo = " + Grupo ;
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor ValidarHorarios(String Horario, String Alumno) {
 
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT grupo.idHorario FROM grupo INNER JOIN InscripcionAlumno " +
+                "on grupo.idGrupo = InscripcionAlumno.idGrupo WHERE InscripcionAlumno.idAlumno = " + Alumno +
+                " AND grupo.idHorario = " + Horario ;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
 }

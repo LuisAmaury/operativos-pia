@@ -113,12 +113,20 @@ public class Materia extends Fragment {
     }
 
     private boolean ValidarHorarios() {
-        return false;
+        Cursor _idHorario = myDb.ObtenerHorario(_idGrupo);
+        _idHorario.moveToFirst();
+        String hor = _idHorario.getString(_idHorario.getColumnIndex("idHorario"));
+
+        Cursor Horarios = myDb.ValidarHorarios(hor, _idAlumno);
+        if(Horarios.getCount() >= 1){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     private boolean ValidaCalificacion() {
         Cursor calificacion = myDb.obtenerCalificacion(_idGrupo,_idAlumno, req);
-        //int count = calificacion.getCount();
         if (calificacion.getCount() == 1){
             calificacion.moveToFirst();
             calif = calificacion.getString(calificacion.getColumnIndex("calificacion"));
