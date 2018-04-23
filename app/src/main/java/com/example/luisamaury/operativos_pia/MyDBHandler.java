@@ -501,4 +501,72 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
+
+    public Cursor viewGrupos(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT grupo.idGrupo, Materia.nombre, horario.dias, horario.horaInicio, horario.horaFin  FROM "+ grupo_TABLE_NAME +
+                " LEFT JOIN " + materia_TABLE_NAME +
+                "  ON grupo.idMateria = Materia.idMateria"+
+                " LEFT JOIN " + horario_TABLE_NAME +
+                " ON grupo.idHorario = horario.idHorario";
+        try {
+            Cursor res = db.rawQuery(query,null);
+            return res;
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerRequisito(String Grupo){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Materia.idMateria, Materia.requisito FROM grupo INNER JOIN Materia on grupo.idMateria = Materia.idMateria WHERE grupo.idGrupo = " + Grupo ;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerCalificacion(String Grupo, String Alumno, String Requisito) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT InscripcionAlumno.calificacion FROM InscripcionAlumno " +
+        " INNER JOIN grupo on grupo.idGrupo = InscripcionAlumno.idGrupo "+
+        " INNER JOIN Materia on Materia.idMateria = grupo.idMateria " +
+        " WHERE InscripcionAlumno.idAlumno = " + Alumno + " AND grupo.idMateria = " + Requisito;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor ObtenerHorario(String Grupo){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT grupo.idHorario FROM grupo WHERE grupo.idGrupo = " + Grupo ;
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor ValidarHorarios(String Horario, String Alumno) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT grupo.idHorario FROM grupo INNER JOIN InscripcionAlumno " +
+                "on grupo.idGrupo = InscripcionAlumno.idGrupo WHERE InscripcionAlumno.idAlumno = " + Alumno +
+                " AND grupo.idHorario = " + Horario ;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getStudentID(String username){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+alumno_TABLE_NAME+" WHERE nombre = ?; ", new String[] {username});
+
+        return res;
+    }
+
+    public Cursor getStudentDataInscripcion(String idStudent){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?; ", new String[] {idStudent});
+        return res;
+    }
 }

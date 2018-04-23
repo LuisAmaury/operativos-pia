@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_subscriptions_black_24dp"
         android:title="Inscripcion" />
     <item
+        android:id="@+id/InscripcionAlumno"
+        android:icon="@drawable/ic_subscriptions_black_24dp"
+        android:title="Inscripcion" />
+    <item
         android:id="@+id/Alumno"
         android:icon="@drawable/ic_person_pin_black_24dp"
         android:title="Alumno" />
