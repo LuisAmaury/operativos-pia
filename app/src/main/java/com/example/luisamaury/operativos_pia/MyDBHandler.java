@@ -88,24 +88,26 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     // ALUMNO
-    public boolean insertDataAlumno(String name, String telefono, String username) {
+    public long[] insertDataAlumno(String name, String telefono, String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(alumno_col_2, name);
-        contentValues.put(alumno_col_3, telefono);
-        long insertionAlumni = db.insert(alumno_TABLE_NAME,null ,contentValues);
+        long[] sessionIds = new long[2];
 
-        contentValues.clear();
         contentValues.put(usuario_col_3, username);
         contentValues.put(usuario_col_2, "12");
         contentValues.put(usuario_col_4, "false");
-        long insertionUser = db.insert(usuario_TABLE_NAME, null, contentValues);
+        sessionIds[0] = db.insert(usuario_TABLE_NAME, null, contentValues);
+
+        contentValues.clear();
+
+        contentValues.put(alumno_col_2, name);
+        contentValues.put(alumno_col_3, telefono);
+        contentValues.put(alumno_col_4, sessionIds[0]);
+        sessionIds[1] = db.insert(alumno_TABLE_NAME,null ,contentValues);
+
         db.close();
 
-        if((insertionAlumni + insertionUser) <= 0)
-            return false;
-        else
-            return true;
+        return sessionIds;
     }
 
     public Cursor getAllDataAlumno() {
@@ -403,7 +405,45 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String [] whereArgs = new String[2];
         whereArgs[0] = username;
         whereArgs[1] = password;
-        Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT u.idUsuario, u.username, u.isAdmin, a.idAlumno FROM usuarios u LEFT JOIN Alumno a ON u.idUsuario = a.idUsuario WHERE username = ? AND contrasena = ?", whereArgs);
         return cursor;
     }
+
+    public Cursor viewGrupos(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT grupo.idGrupo, Materia.nombre, horario.dias, horario.horaInicio, horario.horaFin  FROM "+ grupo_TABLE_NAME +
+                " LEFT JOIN " + materia_TABLE_NAME +
+                "  ON grupo.idMateria = Materia.idMateria"+
+                " LEFT JOIN " + horario_TABLE_NAME +
+                " ON grupo.idHorario = horario.idHorario";
+        try {
+            Cursor res = db.rawQuery(query,null);
+            return res;
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerRequisito(String Grupo){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Materia.idMateria, Materia.requisito FROM grupo INNER JOIN Materia on grupo.idMateria = Materia.idMateria WHERE grupo.idGrupo = " + Grupo ;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerCalificacion(String Grupo, String Alumno, String Requisito) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT InscripcionAlumno.calificacion FROM InscripcionAlumno " +
+        " INNER JOIN grupo on grupo.idGrupo = InscripcionAlumno.idGrupo "+
+        " INNER JOIN Materia on Materia.idMateria = grupo.idMateria " +
+        " WHERE InscripcionAlumno.idAlumno = " + Alumno + " AND grupo.idMateria = " + Requisito;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+
 }
