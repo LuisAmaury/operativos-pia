@@ -399,7 +399,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String [] whereArgs = new String[2];
         whereArgs[0] = username;
         whereArgs[1] = password;
-        Cursor cursor = db.query(usuario_TABLE_NAME, null, "username = ? AND contrasena = ?", whereArgs, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT u.idUsuario, u.username, u.isAdmin, a.idAlumno FROM usuarios u LEFT JOIN Alumno a ON u.idUsuario = a.idUsuario WHERE username = ? AND contrasena = ?", whereArgs);
         return cursor;
     }
 
@@ -428,11 +428,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery(query,null);
         return res;
     }
-   /* public Object getDataMateria(String idGrupo) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select Materia.idMateria, Materia.requisito, Materia.nombre, Materia.semestre from grupo left join Materia ON grupo.idMateria = Materia.idMateria", null );
-        while(res.moveToNext()){
-            return new Object[]{3,4};
-        }
-    }*/
+    public Cursor obtenerCalificacion(String Grupo, String Alumno, String Requisito) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT InscripcionAlumno.calificacion FROM InscripcionAlumno " +
+        " INNER JOIN grupo on grupo.idGrupo = InscripcionAlumno.idGrupo "+
+        " INNER JOIN Materia on Materia.idMateria = grupo.idMateria " +
+        " WHERE InscripcionAlumno.idAlumno = " + Alumno + " AND grupo.idMateria = " + Requisito;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+
 }

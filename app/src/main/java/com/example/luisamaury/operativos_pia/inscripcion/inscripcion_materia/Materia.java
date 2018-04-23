@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.luisamaury.operativos_pia.MyDBHandler;
 import com.example.luisamaury.operativos_pia.R;
-
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
@@ -28,11 +27,12 @@ import java.util.List;
 public class Materia extends Fragment {
     MyDBHandler myDb;
     ArrayList<String> theList = new ArrayList <>();
-    long _idAlumno;
+    String _idAlumno;
     String [] parts;
     String _idGrupo;
     String req;
     String materia;
+    String calif = "0";
     public Materia() {
         // Required empty public constructor
     }
@@ -50,7 +50,7 @@ public class Materia extends Fragment {
         String unity ;
         myDb = new MyDBHandler(getContext());
         SharedPreferences appData = this.getActivity().getSharedPreferences("appData", Context.MODE_PRIVATE);
-        _idAlumno = appData.getLong("idAlumno", -1);
+        _idAlumno = appData.getString("idAlumno", "");
 
         Cursor data = myDb.viewGrupos();
 
@@ -72,7 +72,7 @@ public class Materia extends Fragment {
         View view = inflater.inflate(R.layout.fragment_materia, container, false);
         final ListView listView = view.findViewById(R.id.listGrupos);
 
-        ListAdapter listAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1, theList);
+        final ListAdapter listAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1, theList);
         listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,7 +88,7 @@ public class Materia extends Fragment {
                     if(ValidaCalificacion()){
                         AgregaMateria();
                     }else {
-                        Toast.makeText(getActivity(), "Materia no puede llevar la materia", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No puede llevar la materia", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     AgregaMateria();
@@ -99,21 +99,39 @@ public class Materia extends Fragment {
     }
 
    private void AgregaMateria() {
+        if (ValidarHorarios()){
+            Toast.makeText(getActivity(), "Horarios iguales", Toast.LENGTH_SHORT).show();
+        }else {
+            String calf = "0";
+            boolean isInserted = myDb.insertInscripcion(_idAlumno,String.valueOf(_idGrupo), calf);
+            if(isInserted == true)
+                Toast.makeText(getActivity(),"Data Inserted",Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getActivity(),"Data not Inserted",Toast.LENGTH_LONG).show();
+        }
 
-       String calf = "0";
-       boolean isInserted = myDb.insertInscripcion(String.valueOf(_idAlumno),String.valueOf(_idGrupo), calf);
-       if(isInserted == true)
-           Toast.makeText(getActivity(),"Data Inserted",Toast.LENGTH_LONG).show();
-       else
-           Toast.makeText(getActivity(),"Data not Inserted",Toast.LENGTH_LONG).show();
+    }
 
+    private boolean ValidarHorarios() {
+        return false;
     }
 
     private boolean ValidaCalificacion() {
-        return true;
+        Cursor calificacion = myDb.obtenerCalificacion(_idGrupo,_idAlumno, req);
+        //int count = calificacion.getCount();
+        if (calificacion.getCount() == 1){
+            calificacion.moveToFirst();
+            calif = calificacion.getString(calificacion.getColumnIndex("calificacion"));
+        }
+        int c = Integer.valueOf(calif);
+        if(c >= 70){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    private boolean ValidaMateriaRequisito() {
+    private boolean ValidaMateriaRequisito(){
 
         Cursor requisito = myDb.obtenerRequisito(_idGrupo);
         if (requisito.getCount()==1){
@@ -121,7 +139,7 @@ public class Materia extends Fragment {
             materia = requisito.getString(requisito.getColumnIndex("idMateria"));
             req = requisito.getString(requisito.getColumnIndex("requisito"));
         }
-        if(req == "0"){
+        if(req.equals("0")){
             return false;
         }else{
             return true;
