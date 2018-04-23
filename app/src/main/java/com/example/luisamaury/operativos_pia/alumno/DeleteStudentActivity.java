@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.luisamaury.operativos_pia.MyDBHandler;
 import com.example.luisamaury.operativos_pia.R;
+import com.example.luisamaury.operativos_pia.grupo.DeleteGroupActivity;
 
 public class DeleteStudentActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class DeleteStudentActivity extends AppCompatActivity {
     Button btnDelete;
 
     Button btnviewUpdate;
+    boolean valido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +53,18 @@ public class DeleteStudentActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Integer deletedRows = myDb.deleteDataAlumno(editTextId.getText().toString());
-                        if(deletedRows > 0)
-                            Toast.makeText(DeleteStudentActivity.this,"Data Deleted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(DeleteStudentActivity.this,"Data not Deleted",Toast.LENGTH_LONG).show();
-                        editName.setText("");
-                        editTextId.setText("");
-
+                        valido = myDb.checkAlumnoInscripcion(editTextId.getText().toString());
+                        if(valido) {
+                            Integer deletedRows = myDb.deleteDataAlumno(editTextId.getText().toString());
+                            if (deletedRows > 0)
+                                Toast.makeText(DeleteStudentActivity.this, "Data Deleted", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(DeleteStudentActivity.this, "Data not Deleted", Toast.LENGTH_LONG).show();
+                            editName.setText("");
+                            editTextId.setText("");
+                        }else{
+                            Toast.makeText(DeleteStudentActivity.this, "Cannot Delete, it is assigned to an inscription", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
         );

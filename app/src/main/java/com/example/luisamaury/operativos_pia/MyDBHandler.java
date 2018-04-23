@@ -127,6 +127,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+
+
     public Integer deleteDataAlumno(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(alumno_TABLE_NAME, "idAlumno = ?",new String[] {id});
@@ -167,6 +169,26 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(materia_TABLE_NAME, "idMateria = ?",new String[] {id});
     }
+    public boolean checkMateriaGrupo(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idMateria FROM "+grupo_TABLE_NAME+" WHERE idMateria = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
+    }
+    public Cursor getNameMateria(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select nombre from "+materia_TABLE_NAME+ " WHERE idMateria = ? ",new String[] {id});
+        return res;
+    }
+    public Cursor getIDMateriaGrupo(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select idMateria from "+grupo_TABLE_NAME+ " WHERE idGrupo = ? ",new String[] {id});
+        return res;
+    }
     //HORARIO
     public boolean insertHorario(String dias, String horaInicio, String horaFin){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -201,6 +223,17 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(horario_TABLE_NAME, "idHorario = ?", new String[] {id});
     }
+    public boolean checkHorarioGrupo(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idHorario FROM "+grupo_TABLE_NAME+" WHERE idHorario = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
+    }
+
 
     //INSCRIPCION
     public boolean insertInscripcion(String idAlumno, String idGrupo, String calificacion){
@@ -221,6 +254,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("SELECT * FROM " + inscripcionAlumno_TABLE_NAME, null);
         return res;
     }
+    public Cursor getAllDataInscripcionNamed(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT i.idInscripcionAlumno, i.idAlumno, i.idGrupo, i.calificacion, a.nombre, m.nombre FROM InscripcionAlumno i LEFT JOIN Alumno a ON i.idAlumno = a.idAlumno LEFT JOIN grupo g ON i.idGrupo = g.idGrupo LEFT JOIN Materia m ON g.idMateria = m.idMateria", null);
+        return cursor;
+    }
 
     public boolean updateDataInscripcion(String idInscripcionAlumno, String idAlumno, String idGrupo, String calificacion){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -235,6 +273,27 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Integer deleteDataInscripcion(String idInscripcionAlumno){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(inscripcionAlumno_TABLE_NAME, "idInscripcionAlumno = ?", new String[] {idInscripcionAlumno});
+    }
+    public boolean checkGrupoInscripcion(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idGrupo FROM "+inscripcionAlumno_TABLE_NAME+" WHERE idGrupo = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
+    }
+    public boolean checkAlumnoInscripcion(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+
+        Cursor res = db.rawQuery("SELECT idAlumno FROM "+inscripcionAlumno_TABLE_NAME+" WHERE idAlumno = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
     }
 
 
@@ -326,6 +385,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return true;
     }
 
+
+
+
     public boolean modifyGroup (String idGrupo, String Subject, String Hour, String Cupo){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -350,7 +412,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
     public Integer deleteGroup(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(grupo_TABLE_NAME, "idAlumno = ?",new String[] {id});
+        return db.delete(grupo_TABLE_NAME, "idGrupo = ?",new String[] {id});
     }
 
     /////   USERS   //////
@@ -367,6 +429,17 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Integer deleteUser(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(usuario_TABLE_NAME, "idUsuario = ?",new String[] {id});
+    }
+
+    public boolean checkUserStudent(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean valido = true;
+        Cursor res = db.rawQuery("SELECT idUsuario FROM "+alumno_TABLE_NAME+" WHERE idUsuario = ?; ", new String[] {id});
+        if(res!=null && res.getCount()>0){
+            valido = false;
+        }
+
+        return valido;
     }
     public boolean modifyUser (String idUsuario, String password, String UserName){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -402,6 +475,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT u.idUsuario, u.username, u.isAdmin, a.idAlumno FROM usuarios u LEFT JOIN Alumno a ON u.idUsuario = a.idUsuario WHERE username = ? AND contrasena = ?", whereArgs);
         return cursor;
     }
+
+
+
+    ////// Ver los alumnos de un grupo //////
+    public Cursor alumnosDeUnGrupo(String idGrupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Alumno.idAlumno, Alumno.nombre FROM Alumno INNER JOIN InscripcionAlumno on Alumno.idAlumno = InscripcionAlumno.idAlumno WHERE InscripcionAlumno.calificacion = 0 and idGrupo = " + idGrupo, null);
+        return res;
+    }
+
 
     public Cursor viewGrupos(){
 
