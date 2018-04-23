@@ -423,7 +423,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public Cursor viewAllGroups(){
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+grupo_TABLE_NAME,null);
+        Cursor res = db.rawQuery("SELECT g.idGrupo, g.idMateria, g.idHorario, g.cupo, m.nombre, h.dias, h.horaInicio, h.horaFin FROM grupo g LEFT JOIN Materia m ON g.idMateria = m.idMateria LEFT JOIN horario h ON g.idHorario = h.idHorario",null);
         return res;
     }
     public Integer deleteGroup(String id) {

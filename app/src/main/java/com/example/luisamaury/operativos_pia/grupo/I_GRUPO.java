@@ -60,6 +60,7 @@ public class I_GRUPO extends Fragment {
             viewer.findViewById(R.id.btnOpen).setVisibility(View.GONE);
             viewer.findViewById(R.id.btnModifyGroup).setVisibility(View.GONE);
             viewer.findViewById(R.id.btnDeleteGroup).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnVerAlumnosGrupo).setVisibility(View.GONE);
         }
 
         Open();

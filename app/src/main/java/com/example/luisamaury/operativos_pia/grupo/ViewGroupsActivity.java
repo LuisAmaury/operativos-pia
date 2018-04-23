@@ -38,7 +38,9 @@ public class ViewGroupsActivity extends AppCompatActivity {
         }else{
             while(data.moveToNext()){
                 unity = "";
-                unity = unity +"ID Grupo: "+ data.getString(0)+"\nID Materia: "+data.getString(1)+"\nID Horario: "+data.getString(2)+"\nCupo: "+data.getString(3);
+                unity = unity +"ID Grupo: "+ data.getString(0)+"\nID Materia: "+data.getString(1)+" Materia: "+data.getString(4)+
+                        "\nID Horario: "+data.getString(2)+" Dia(s): "+data.getString(5)+"\nHora Inicio: "+data.getString(6)+" Hora Fin: "+data.getString(7)+
+                        "\nCupo: "+data.getString(3);
                 theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);
