@@ -416,4 +416,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT u.idUsuario, u.username, u.isAdmin, a.idAlumno FROM usuarios u LEFT JOIN Alumno a ON u.idUsuario = a.idUsuario WHERE username = ? AND contrasena = ?", whereArgs);
         return cursor;
     }
+
+
+
+    ////// Ver los alumnos de un grupo //////
+    public Cursor alumnosDeUnGrupo(String idGrupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Alumno.idAlumno, Alumno.nombre FROM Alumno INNER JOIN InscripcionAlumno on Alumno.idAlumno = InscripcionAlumno.idAlumno WHERE InscripcionAlumno.calificacion = 0 and idGrupo = " + idGrupo, null);
+        return res;
+    }
+
 }

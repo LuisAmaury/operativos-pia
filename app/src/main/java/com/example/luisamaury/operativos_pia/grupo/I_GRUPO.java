@@ -20,6 +20,7 @@ public class I_GRUPO extends Fragment {
     View viewer;
     Button btnOpen;
     Button btnModifyGroup, btnViewGroups, btnDelete;
+    Button btnVerAlumno;
     MyDBHandler myDb;                           // Base de datos
     EditText idHorario, editDias,editHoraInicio, editHoraFin;// campos de texto
     Button btnAddData, btnviewAll, btnviewUpdate;                       // Botones
@@ -52,7 +53,8 @@ public class I_GRUPO extends Fragment {
         btnModifyGroup = (Button) viewer.findViewById(R.id.btnModifyGroup);
         btnViewGroups = (Button) viewer.findViewById(R.id.btnViewGroups);
         btnDelete = (Button) viewer.findViewById(R.id.btnDeleteGroup);
-
+        btnVerAlumno = (Button) viewer.findViewById(R.id.btnVerAlumnosGrupo);
+      
         SharedPreferences appData = getActivity().getApplicationContext().getSharedPreferences("appData", Context.MODE_PRIVATE);
         if(appData.getString("isAdmin", "").equals("false")){
             viewer.findViewById(R.id.btnOpen).setVisibility(View.GONE);
@@ -64,6 +66,7 @@ public class I_GRUPO extends Fragment {
         openModifyGroup();
         openViewGroups();
         openDeleteGroup();
+        openVerAlumnosPorGrupo();
         return viewer;
     }
 
@@ -112,5 +115,16 @@ public class I_GRUPO extends Fragment {
         });
     }
 
+    public void openVerAlumnosPorGrupo(){
+        btnVerAlumno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), VerAlumnosPorGrupo.class);
+                in.putExtra("Some","Some Data");
+                startActivity(in);
+
+            }
+        });
+    }
 
 }
