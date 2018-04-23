@@ -356,9 +356,47 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
     public Integer deleteGroup(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(grupo_TABLE_NAME, "idAlumno = ?",new String[] {id});
+        return db.delete(grupo_TABLE_NAME, "idGrupo = ?",new String[] {id});
     }
 
+
+
+    public Cursor viewGrupos(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT grupo.idGrupo, Materia.nombre, horario.dias, horario.horaInicio, horario.horaFin  FROM "+ grupo_TABLE_NAME +
+                " LEFT JOIN " + materia_TABLE_NAME +
+                "  ON grupo.idMateria = Materia.idMateria"+
+                " LEFT JOIN " + horario_TABLE_NAME +
+                " ON grupo.idHorario = horario.idHorario";
+        try {
+            Cursor res = db.rawQuery(query,null);
+            return res;
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerRequisito(String Grupo){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Materia.idMateria, Materia.requisito FROM grupo INNER JOIN Materia on grupo.idMateria = Materia.idMateria WHERE grupo.idGrupo = " + Grupo ;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor obtenerCalificacion(String Grupo, String Alumno, String Requisito) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT InscripcionAlumno.calificacion FROM InscripcionAlumno " +
+        " INNER JOIN grupo on grupo.idGrupo = InscripcionAlumno.idGrupo "+
+        " INNER JOIN Materia on Materia.idMateria = grupo.idMateria " +
+        " WHERE InscripcionAlumno.idAlumno = " + Alumno + " AND grupo.idMateria = " + Requisito;
+
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
     /////   USERS   //////
     public Cursor viewAllUsers(){
 
@@ -398,7 +436,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return true;
     }
 
-///// END USERS /////
+    ///// END USERS /////
     //LOGIN
     public Cursor loginCheck(String username, String password){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -409,40 +447,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor viewGrupos(){
-
+    ////// Ver los alumnos de un grupo //////
+    public Cursor alumnosDeUnGrupo(String idGrupo){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT grupo.idGrupo, Materia.nombre, horario.dias, horario.horaInicio, horario.horaFin  FROM "+ grupo_TABLE_NAME +
-                " LEFT JOIN " + materia_TABLE_NAME +
-                "  ON grupo.idMateria = Materia.idMateria"+
-                " LEFT JOIN " + horario_TABLE_NAME +
-                " ON grupo.idHorario = horario.idHorario";
-        try {
-            Cursor res = db.rawQuery(query,null);
-            return res;
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-        Cursor res = db.rawQuery(query,null);
-        return res;
-    }
-    public Cursor obtenerRequisito(String Grupo){
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT Materia.idMateria, Materia.requisito FROM grupo INNER JOIN Materia on grupo.idMateria = Materia.idMateria WHERE grupo.idGrupo = " + Grupo ;
-
-        Cursor res = db.rawQuery(query,null);
-        return res;
-    }
-    public Cursor obtenerCalificacion(String Grupo, String Alumno, String Requisito) {
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT InscripcionAlumno.calificacion FROM InscripcionAlumno " +
-        " INNER JOIN grupo on grupo.idGrupo = InscripcionAlumno.idGrupo "+
-        " INNER JOIN Materia on Materia.idMateria = grupo.idMateria " +
-        " WHERE InscripcionAlumno.idAlumno = " + Alumno + " AND grupo.idMateria = " + Requisito;
-
-        Cursor res = db.rawQuery(query,null);
+        Cursor res = db.rawQuery("SELECT Alumno.idAlumno, Alumno.nombre FROM Alumno INNER JOIN InscripcionAlumno on Alumno.idAlumno = InscripcionAlumno.idAlumno WHERE InscripcionAlumno.calificacion = 0 and idGrupo = " + idGrupo, null);
         return res;
     }
 
