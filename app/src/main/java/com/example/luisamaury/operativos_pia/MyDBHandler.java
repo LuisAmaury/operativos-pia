@@ -324,6 +324,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return res;
     }
+    public Cursor getInfoHour(String hour){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+horario_TABLE_NAME+" WHERE idHorario = ?; ", new String[] {hour});
+
+        return res;
+    }
+    public Cursor getInfoSubject(String subject){
+        String id = new String();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+materia_TABLE_NAME+" WHERE idMateria = ?; ", new String[] {subject});
+
+        return res;
+    }
+
 
     public boolean saveNewGroup(String Subject, String Hour, String Cupo){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -360,6 +375,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from "+grupo_TABLE_NAME,null);
         return res;
     }
+    public Cursor getDataGroup(String idGroup){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + grupo_TABLE_NAME+" WHERE idGrupo = ?; ", new String[] {idGroup});
+        return res;
+    }
+
     public Integer deleteGroup(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(grupo_TABLE_NAME, "idAlumno = ?",new String[] {id});

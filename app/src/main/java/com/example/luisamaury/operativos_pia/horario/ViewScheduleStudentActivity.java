@@ -23,6 +23,9 @@ import java.util.ArrayList;
 public class ViewScheduleStudentActivity extends AppCompatActivity {
     MyDBHandler myDb;
     String idAlumno, UserName;
+    String unity,idMateria, idHour ;
+    String nomMateria,idGrupo;
+    String Start, End;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listViewer);
         ArrayList<String> theList = new ArrayList <>();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String unity ;
+
         Integer counter=0;
         myDb = new MyDBHandler(this);
 
@@ -42,7 +45,7 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
         if(appData.getString("isAdmin", "").equals("false")){
 
             UserName = appData.getString("username","");
-            
+
         }
         Cursor aid = myDb.getStudentID(UserName);
 
@@ -56,8 +59,27 @@ public class ViewScheduleStudentActivity extends AppCompatActivity {
             Toast.makeText(ViewScheduleStudentActivity.this,"No Existen Datos :(",Toast.LENGTH_SHORT).show();
         }else{
             while(data.moveToNext()){
+                /*idGrupo =data.getString(2);
+                Cursor aid2 = myDb.getDataGroup(idGrupo);
+
+                while(aid2.moveToNext()){
+                    idMateria = aid2.getString(1);
+                    idHour = aid2.getString(2);
+                }
+                Cursor aid3 = myDb.getInfoSubject(idMateria);
+                Cursor aid4 = myDb.getInfoHour(idHour);
+                while(aid3.moveToNext()){
+                    nomMateria = aid3.getString(1);
+                }
+                while(aid4.moveToNext()){
+                    Start = aid3.getString(2);
+                    End = aid3.getString(3);
+                }
+*/
                 unity = "";
                 counter++;
+                //unity = unity + counter+"\nID Grupo: "+data.getString(2)+"\nMateria: "+nomMateria+"\nInicio: "+Start+
+                 //       "\nFin: "+End+"\nCalificacion: "+data.getString(3);
                 unity = unity + counter+"\nID Grupo: "+data.getString(2)+"\nCalificacion: "+data.getString(3);
                 theList.add(unity);
                 ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
