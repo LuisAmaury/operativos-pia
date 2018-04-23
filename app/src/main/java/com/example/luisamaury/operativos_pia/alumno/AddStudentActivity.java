@@ -58,6 +58,8 @@ public class AddStudentActivity extends AppCompatActivity {
                             editName.setText("");
                             editPhone.setText("");
                         }
+                        editName.setText("");
+                        editPhone.setText("");
                     }
                 }
         );
