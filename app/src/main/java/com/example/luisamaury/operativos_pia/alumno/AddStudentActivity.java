@@ -1,5 +1,6 @@
 package com.example.luisamaury.operativos_pia.alumno;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -35,10 +36,7 @@ public class AddStudentActivity extends AppCompatActivity {
         btnAddData = (Button)findViewById(R.id.btnAddNewStudent);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         AddData();
-
     }
 
 
@@ -49,13 +47,17 @@ public class AddStudentActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         String username = editName.getText().toString();
                         username = username.replace(' ', '-');
-                        boolean isInserted = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), username);
-                        if(isInserted == true)
-                            Toast.makeText(AddStudentActivity.this,"Informacion Ingresada",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(AddStudentActivity.this,"Informacion no Ingresada",Toast.LENGTH_LONG).show();
-                        editName.setText("");
-                        editPhone.setText("");
+                        long[] sessionids = new long[2];
+                        sessionids = myDb.insertDataAlumno(editName.getText().toString(), editPhone.getText().toString(), username);
+                        SharedPreferences appData = getApplicationContext().getSharedPreferences("appData", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = appData.edit();
+                        if (sessionids[0] != -1 && sessionids[1] != -1) {
+                            Toast.makeText(AddStudentActivity.this, "Informacion Ingresada", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(AddStudentActivity.this, "Informacion no Ingresada", Toast.LENGTH_LONG).show();
+                            editName.setText("");
+                            editPhone.setText("");
+                        }
                     }
                 }
         );

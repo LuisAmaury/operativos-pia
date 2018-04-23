@@ -1,5 +1,7 @@
 package com.example.luisamaury.operativos_pia.grupo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -52,8 +54,16 @@ public class I_GRUPO extends Fragment {
         btnViewGroups = (Button) viewer.findViewById(R.id.btnViewGroups);
         btnDelete = (Button) viewer.findViewById(R.id.btnDeleteGroup);
         btnVerAlumno = (Button) viewer.findViewById(R.id.btnVerAlumnosGrupo);
-       Open();
-      openModifyGroup();
+      
+        SharedPreferences appData = getActivity().getApplicationContext().getSharedPreferences("appData", Context.MODE_PRIVATE);
+        if(appData.getString("isAdmin", "").equals("false")){
+            viewer.findViewById(R.id.btnOpen).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnModifyGroup).setVisibility(View.GONE);
+            viewer.findViewById(R.id.btnDeleteGroup).setVisibility(View.GONE);
+        }
+
+        Open();
+        openModifyGroup();
         openViewGroups();
         openDeleteGroup();
         openVerAlumnosPorGrupo();

@@ -13,13 +13,17 @@ import android.view.MenuItem;
 
 import com.example.luisamaury.operativos_pia.alumno.I_ALUMNO;
 import com.example.luisamaury.operativos_pia.horario.I_HORARIO;
+import com.example.luisamaury.operativos_pia.horario.I_HORARIO_ALUMNO;
 import com.example.luisamaury.operativos_pia.inscripcion.I_INSCRIPCION;
 import com.example.luisamaury.operativos_pia.grupo.I_GRUPO;
 import com.example.luisamaury.operativos_pia.materia.I_MATERIA;
 
+
 public class MENU extends AppCompatActivity {
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle mToogle;
+
+    String Admin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,7 @@ public class MENU extends AppCompatActivity {
 
         SharedPreferences appData = getApplicationContext().getSharedPreferences("appData", MODE_PRIVATE);
         if(appData.getString("isAdmin", "").equals("false")){
+            Admin ="NO";
             nvDrawer.getMenu().findItem(R.id.Alumno).setVisible(false);
             nvDrawer.getMenu().findItem(R.id.Usuario).setVisible(false);
         }
@@ -47,7 +52,10 @@ public class MENU extends AppCompatActivity {
 
         switch (menuItem.getItemId()) {
             case R.id.Horario:
-                fragmentClass = I_HORARIO.class;
+                if(Admin == "NO"){
+                    fragmentClass = I_HORARIO_ALUMNO.class;
+                }else
+                    fragmentClass = I_HORARIO.class;
                 break;
             case R.id.Inscripcion:
                 fragmentClass = I_INSCRIPCION.class;
@@ -56,9 +64,10 @@ public class MENU extends AppCompatActivity {
                 fragmentClass = I_ALUMNO.class;
                 break;
             case R.id.Materia:
-                fragmentClass = I_MATERIA.class;
+                    fragmentClass = I_MATERIA.class;
                 break;
             case R.id.Group:
+
                 fragmentClass = I_GRUPO.class;
                 break;
             case R.id.Usuario:
