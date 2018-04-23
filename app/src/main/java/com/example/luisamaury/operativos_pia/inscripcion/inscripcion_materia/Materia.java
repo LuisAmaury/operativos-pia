@@ -84,7 +84,7 @@ public class Materia extends Fragment {
                 String aux = theList.get(position);
                 parts = aux.split("\\s+");
                 _idGrupo = parts[1];
-                
+
                     AgregaMateria();
 
             }
@@ -121,6 +121,10 @@ public class Materia extends Fragment {
                 val=false;
                 throw new Exception("Usted ya ha inscrito 6 materias.");
                 }
+            if(validaCupo()){
+                val=false;
+                throw new Exception("Cupo lleno.");
+            }
 
         }catch(Exception e){
             showMessage("Error info", e.getMessage());
@@ -170,6 +174,19 @@ public class Materia extends Fragment {
             }else
                 return false;
 
+    }
+
+    private boolean validaCupo(){
+        Cursor data = myDb.obtenerCupo(_idGrupo);
+        data.moveToFirst();
+        int cupo = Integer.parseInt(data.getString(data.getColumnIndex("cupo")));
+        String cupo1 = data.getString(data.getColumnIndex("cupo"));
+        String cupo2 = String.valueOf(data.getCount());
+        showMessage("Informacion: ", cupo2);
+        if(data.getCount() >= cupo){
+            return true;
+        }else
+            return false;
     }
 
 

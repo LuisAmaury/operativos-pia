@@ -446,4 +446,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor obtenerCupo(String idGrupo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+grupo_TABLE_NAME+" WHERE idGrupo = ?;",new String[] {idGrupo});
+        return res;
+    }
+
 }
